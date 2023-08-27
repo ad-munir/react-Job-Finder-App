@@ -8,7 +8,7 @@ import Job from './components/Job/Job';
 function App() {
 
   return (
-    <div className="app container">
+    <div className="w-[85%] m-auto bg-white">
       <Navbar />
       <Search />
       <Job />
