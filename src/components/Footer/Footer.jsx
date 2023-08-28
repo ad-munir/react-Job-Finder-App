@@ -9,13 +9,30 @@ const Footer = () => {
                     </h1>
                 </div>
                 <p className="text-white pb-3 opacity-70 leading-7">
-                    We always make our seekers and companu=ies find the best jobs and employers the best talents.
+                    We always make our seekers and companies find the best jobs and employers the best talents.
                 </p>
             </div>
             <div className="grid">
                 <span className="divTitle text-[18px] font-semibold text-white ">
                     Company
                 </span>
+                <div className="grid gap-3">
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">About us</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Features</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">News</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Faq</li>
+                </div>
+            </div>
+            <div className="grid">
+                <span className="divTitle text-[18px] font-semibold text-white ">
+                    Support
+                </span>
+                <div className="grid gap-3">
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">About us</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Features</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">News</li>
+                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Faq</li>
+                </div>
             </div>
         </div>
     )
