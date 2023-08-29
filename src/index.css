@@ -35,15 +35,22 @@ li {
 }
 
 li:hover::before {
+  text-align: center;
   position: absolute;
   content: '';
   height: 4px;
   width: 100%;
   background-color: #2a68ff;
-  right: 0;
   bottom: -10px;
   color: #2a68ff;
+  animation: move .3s;
 }
+
+@keyframes move {
+  from {width: 0%;}
+  to {width: 100%; }
+}
+
 
 .icon {
   cursor: pointer;
@@ -54,6 +61,34 @@ li:hover::before {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
+
+.nav-link {
+	font-size: 15px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+
+.underline {
+	background-color: gold;
+	width: 0;
+	height: 2px;
+	transition: width 0.3s;
+}
+
+.nav-link:hover .underline {
+	width: 50px;
+}
+
+
 
 /* 
 h1 {

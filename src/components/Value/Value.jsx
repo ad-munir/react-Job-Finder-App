@@ -64,7 +64,7 @@ const Value = () => {
                     </h2>
                 </div>
                 <button className='border-[2px] rounded-xl py-1 px-12 text-lg 
-                            font-semibold text-blueColor hover:bg-white border-blueColor'>
+                            font-semibold bg-white text-blueColor border-blueColor hover:bg-inherit'>
                     Get Started
                 </button>
             </div>

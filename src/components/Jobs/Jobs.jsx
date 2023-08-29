@@ -1,50 +1,8 @@
+/* eslint-disable react/prop-types */
 import { BiTimeFive } from 'react-icons/bi';
 
-import logo1 from './../../assets/logo1.png'
-import logo2 from './../../assets/logo2.png'
-import logo3 from './../../assets/logo3.png'
-import logo4 from './../../assets/logo4.png'
 
-const data = [
-    {
-        id: 1,
-        image: logo1,
-        title: "Web Developer",
-        location: "Canada",
-        time: "1Day",
-        desc: "Join our dynamic team as a Web Developer. You'll work on exciting projects and collaborate with talented individuals to build responsive and user-friendly web applications.",
-        company: "Devo Lin Co."
-    },
-    {
-        id: 2,
-        image: logo2,
-        title: "Frontend Developer",
-        location: "United States",
-        time: "1H",
-        desc: "Are you passionate about creating beautiful and interactive user interfaces? Join us as a Frontend Developer and bring cutting-edge designs to life with modern web technologies.",
-        company: "TechCo"
-    },
-    {
-        id: 3,
-        image: logo3,
-        title: "Full Stack Engineer",
-        location: "Germany",
-        time: "2H",
-        desc: "Seeking a talented Full Stack Engineer to work on end-to-end development projects. You'll have the opportunity to contribute to both frontend and backend components of our applications.",
-        company: "CodeWorks"
-    },
-    {
-        id: 4,
-        image: logo4,
-        title: "UI/UX Designer",
-        location: "France",
-        time: "3H ",
-        desc: "We're looking for a creative UI/UX Designer to craft visually stunning and intuitive user interfaces. Your designs will enhance user experiences and drive engagement across our products.",
-        company: "PixelCraft"
-    }
-];
-
-const Job = () => {
+const Jobs = ({data}) => {
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
@@ -82,4 +40,4 @@ const Job = () => {
     )
 }
 
-export default Job
+export default Jobs
