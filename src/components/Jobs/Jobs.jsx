@@ -2,20 +2,33 @@
 import { BiTimeFive } from 'react-icons/bi';
 
 
-const Jobs = ({data}) => {
+const Jobs = ({ data }) => {
+
+
+
+
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
-            {data.map(({ id, image, title, location, time, desc, company }) => {
+            {data.map(({ id, image, title, location, desc, company, createdAt }) => {
+
+                const createdAtDate = new Date(createdAt); // Get the createdAt date
+                const currentDate = new Date(); // Get the current date
+
+                const timeDifference = Math.abs(currentDate - createdAtDate); // Difference in milliseconds
+                const publishedAt = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert the time difference to hours
+
+
                 return (
-                    <div key={id} className="group group/item singleJob w-[250px] p-5 bg-white rounded-[10px]
-                hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg">
+                    <div key={id}
+                        className="group group/item singleJob w-[250px] p-5 bg-white rounded-[10px]
+                                hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg">
 
                         <span className="flex justify-between items-center gap-4">
                             <h1 className="text-[16px] font-semibold text-textColor
                         group-hover:text-white">{title}</h1>
                             <span className='flex items-center text-[#ccc] gap-1'>
-                                <BiTimeFive />{time}
+                                <BiTimeFive />{publishedAt}D
                             </span>
                         </span>
                         <h6 className="text-[#ccc]">{location}</h6>
