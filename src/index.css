@@ -49,6 +49,11 @@ li:hover::before {
   cursor: pointer;
 }
 
+.card {
+  background: url('./assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 /* 
 h1 {

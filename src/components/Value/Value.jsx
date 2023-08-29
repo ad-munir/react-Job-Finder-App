@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import simple from './../../assets/simple.png'
 
 const Value = () => {
@@ -51,6 +52,21 @@ const Value = () => {
                     </p>
                 </div>
 
+            </div>
+
+            <div className="card my-8 flex justify-between bg-blueColor p-20 rounded-xl">
+                <div>
+                    <h1 className="text-blueColor text-3xl font-bold">
+                        Ready to switch your career
+                    </h1>
+                    <h2 className="text-textColor text-2xl font-bold">
+                        Let's get started!
+                    </h2>
+                </div>
+                <button className='border-[2px] rounded-xl py-1 px-12 text-lg 
+                            font-semibold text-blueColor hover:bg-white border-blueColor'>
+                    Get Started
+                </button>
             </div>
         </div>
     )
