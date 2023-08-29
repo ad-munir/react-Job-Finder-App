@@ -4,7 +4,7 @@ const Navbar = () => {
         <nav className="navBar flex justify-between items-center p-[3rem]">
             <div className="logoDiv">
                 <h1 className="logo text-[25px] text-blueColor">
-                    <strong>Job</strong>Search
+                    <strong>Job</strong>Finder
                 </h1>
             </div>
 

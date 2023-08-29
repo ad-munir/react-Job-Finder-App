@@ -7,7 +7,7 @@ const Footer = () => {
             <div>
                 <div className="logoDiv">
                     <h1 className="logo text-[25px] text-white pb-6">
-                        <strong>Job</strong>Search
+                        <strong>Job</strong>Finder
                     </h1>
                 </div>
                 <p className="text-white pb-[13px] opacity-70 leading-7">
