@@ -38,7 +38,7 @@ const data = [
         company: "CodeWorks",
         type: "Full-time",
         level: "Experienced",
-        createdAt: "2023-08-15"
+        createdAt: "2023-08-26"
     },
     {
         id: 4,
@@ -86,7 +86,19 @@ const data = [
         company: "PixelCraft",
         type: "Part-time",
         level: "Beginner",
-        createdAt: "2023-08-04"
+        createdAt: "2023-08-29"
+    },
+    {
+        id: 8,
+        image: logo4,
+        title: "Software Engineer",
+        location: "France",
+        time: "3H ",
+        desc: "We're looking for a creative UI/UX Designer to craft visually stunning and intuitive user interfaces. Your designs will enhance user experiences and drive engagement across our products.",
+        company: "PixelCraft",
+        type: "Part-time",
+        level: "Beginner",
+        createdAt: "2023-07-29"
     }
 ];
 

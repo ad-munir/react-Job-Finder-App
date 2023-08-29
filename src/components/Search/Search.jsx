@@ -58,7 +58,7 @@ const Search = ({ data }) => {
         }
     }
 
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -70,19 +70,22 @@ const Search = ({ data }) => {
 
                 const createdAtDate = new Date(item.createdAt); // Get the createdAt date
                 const currentDate = new Date(); // Get the current date
-                
+
                 const timeDifference = Math.abs(currentDate - createdAtDate); // Difference in milliseconds
-                const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Convert the time difference to days
-                console.log(daysDifference);
-                
-                //const jobTime = hoursDifference < 24 ? `${hoursDifference}H` : `${Math.floor(hoursDifference / 24)}D`;
+                const hoursDifference = Math.ceil(timeDifference / (1000 * 60 * 60)); // Convert the time difference to hours
+
 
                 return (
                     item.title.toLowerCase().includes(jobTitle.toLowerCase()) &&
                     item.company.toLowerCase().includes(company.toLowerCase()) &&
                     item.location.toLowerCase().includes(location.toLowerCase()) &&
 
-                    // (time === "all" || jobTime.toLowerCase().includes(time.toLowerCase()))
+                    (
+                        time === "all" || 
+                        (time === "Today" && hoursDifference < 24) ||
+                        (time === "This week" && hoursDifference < 24 * 7) ||
+                        (time === "This month" && hoursDifference < 24 * 30)
+                    ) &&
                     (type === "all" || item.type.toLowerCase().includes(type.toLowerCase())) &&
                     (level === "all" || item.level.toLowerCase().includes(level.toLowerCase()))
                 );
@@ -91,7 +94,7 @@ const Search = ({ data }) => {
             console.log(result)
             setFilteredJobs(result);
             setError('');
-            console.log(type)
+            console.log(filteredJobs)
         }
     }
 
@@ -213,7 +216,7 @@ const Search = ({ data }) => {
                             <option value="Senior">Senior</option>
                             <option value="Beginner">Beginner</option>
                             <option value="Intermediate">Intermediate</option>
-                            <option value="Advocate">Advocate</option>
+                            <option value="Experienced">Experienced</option>
                         </select>
                     </div>
 
