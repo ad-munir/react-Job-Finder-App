@@ -9,13 +9,12 @@ import Jobs from '../Jobs/Jobs';
 
 const Search = ({ data }) => {
 
+    const [filteredJobs, setFilteredJobs] = useState([]);
+
     const [jobTitle, setJobTitle] = useState('');
     const [company, setCompany] = useState('');
     const [location, setLocation] = useState('');
-
     const [error, setError] = useState('');
-
-    const [filteredJobs, setFilteredJobs] = useState([]);
 
 
     const [time, setTime] = useState('all')
@@ -59,6 +58,15 @@ const Search = ({ data }) => {
     }
 
 
+    const handleClear = () => {
+        setJobTitle('');
+        setCompany('');
+        setLocation('');
+        setTime('');
+        setType('');
+        setLevel('');
+        setFilteredJobs([]);
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -91,10 +99,8 @@ const Search = ({ data }) => {
                 );
             })
 
-            console.log(result)
             setFilteredJobs(result);
             setError('');
-            console.log(filteredJobs)
         }
     }
 
@@ -220,7 +226,10 @@ const Search = ({ data }) => {
                         </select>
                     </div>
 
-                    <span className="text-[#a1a1a1] cursor-pointer">Clear All</span>
+                    <span 
+                        className="text-[#a1a1a1] cursor-pointer"
+                        onClick={handleClear}
+                    >Clear All</span>
 
                 </div>
             </div>
