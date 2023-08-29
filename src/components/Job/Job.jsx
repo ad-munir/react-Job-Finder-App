@@ -73,7 +73,7 @@ const Job = () => {
 
                         <button className='border-2 rounded-[10px] block p-2 w-full
                     text-sm font-semibold text-textColor hover:bg-white
-                    group-hover/item:text-textColor group-hover:text-white '>Apply Now</button>
+                    group-hover/item:text-textColor group-hover:text-textColor '>Apply Now</button>
                     </div>
                 );
 
