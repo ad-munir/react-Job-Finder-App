@@ -1,19 +1,24 @@
 // import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
-import Search from './components/Search/Search';
-import Value from './components/Value/Value';
-import data from './data'
-
+import JobDetails from './components/JobDetails/JobDetails';
 
 function App() {
 
   return (
     <div className="w-[85%] m-auto bg-white">
-      <Navbar />
-      <Search data={data} />
-      <Value />
-      <Footer />
+
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/job-details" element={<JobDetails />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   )
 }
