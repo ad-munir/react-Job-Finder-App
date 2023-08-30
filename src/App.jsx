@@ -8,6 +8,7 @@ import Companies from './components/Companies/Companies';
 import About from './components/About/About';
 import Blog from './components/Blog/Blog';
 import ApplicationForm from './components/ApplicationForm/ApplicationForm';
+import Test from './components/Test';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/blog" element={<Layout><Blog /> </Layout>} />
         <Route path="/apply" element={<ApplicationForm />} />
         <Route path="*" element={<Layout><Home /></Layout>} />
+        <Route path='/dd' element={<Test/>} />
       </Routes>
     </Router>
   )
