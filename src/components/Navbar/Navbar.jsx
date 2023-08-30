@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 const Navbar = () => {
     return (
         <nav className="navBar flex justify-between items-center p-[3rem]">
-            <div className="logoDiv">
+            <Link to={'/'}>
                 <h1 className="logo text-[25px] text-blueColor">
                     <strong>Job</strong>Finder
                 </h1>
-            </div>
+            </Link>
 
             <div className="menu flex gap-8">
                 <Link to={'/'}>
@@ -19,7 +19,7 @@ const Navbar = () => {
                 <Link to={'/about'}>
                     <li className="menuList text-[#6f6f6f] hover:text-blueColor">About</li>
                 </Link>
-                <Link to={'/'}>
+                <Link to={'/contact'}>
                     <li className="menuList text-[#6f6f6f] hover:text-blueColor">Contact</li>
                 </Link>
                 <Link to={'/blog'}>

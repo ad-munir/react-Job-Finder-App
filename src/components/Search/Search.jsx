@@ -170,11 +170,11 @@ const Search = ({ data }) => {
 
 
                 </form>
-                <div className="sortDiv flex items-center gap-10 justify-center">
+                <div className="flex items-center gap-10 justify-center">
 
                     <div className="singleSearch flex items-center gap-2">
                         <label htmlFor="time"
-                            className='text-[#808080] font-semibold'>Sort by time:</label>
+                            className='text-[#808080] font-semibold'>Time:</label>
 
                         <select name="time"
                             value={time}
