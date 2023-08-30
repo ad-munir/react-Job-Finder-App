@@ -20,7 +20,7 @@ function App() {
         <Route path="/companies" element={<Layout><Companies /></Layout>} />
         <Route path="/about" element={<Layout><About /></Layout>} />
         <Route path="/blog" element={<Layout><Blog /> </Layout>} />
-        <Route path="/apply/:jobId" element={<ApplicationForm />} />
+        <Route path="/apply" element={<ApplicationForm />} />
         <Route path="*" element={<Layout><Home /></Layout>} />
       </Routes>
     </Router>

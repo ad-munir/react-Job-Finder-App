@@ -46,7 +46,7 @@ const Jobs = ({ data }) => {
                         <Link to="/job-details" state={ { id, image, title, location, desc, company, type, level, createdAt } }>
                             <button className='border-2 rounded-[10px] block p-2 w-full
                             text-sm font-semibold text-textColor hover:bg-white
-                            group-hover/item:text-textColor group-hover:text-textColor '>Apply Now</button>
+                            group-hover/item:text-textColor group-hover:text-textColor '>Apply</button>
                         </Link>
 
                     </div>
