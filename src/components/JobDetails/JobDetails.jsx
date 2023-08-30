@@ -19,7 +19,7 @@ const JobDetails = () => {
                     <h6 className="text-xl text-blueColor border-b w-fit border-blue-400 font-semibold cursor-pointer">{company}</h6>
 
                     <div className="flex gap-4 mt-8">
-                        <Link to={`/apply/${id}`} state={ {id} }>
+                        <Link to={`/apply/${id}`} state={ { id, image, title, location, desc, company, type, level, createdAt } }>
                             <button className='border-2 rounded-[10px] block px-6 h-[40px] bg-blueColor
                                             text-[18px] font-semibold text-white hover:bg-white hover:text-textColor
                                             group-hover/item:text-textColor group-hover:text-textColor '>Apply</button>
