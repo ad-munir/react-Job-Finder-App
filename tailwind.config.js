@@ -13,7 +13,12 @@ export default {
         textColor: '#252b36',
       },
       spacing: {
-        '18': '4.5rem', // Custom spacing value
+        '18':'4.5rem', // Custom spacing value
+      }, 
+      theme: {
+        screens: {
+          'xs': '475px',
+        },
       },
     },
   },

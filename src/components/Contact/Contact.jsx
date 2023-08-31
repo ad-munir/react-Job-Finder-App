@@ -31,7 +31,7 @@ const Contact = () => {
                 </h1>
             </Link>
             <div className="py-6 px-4 mx-auto max-w-screen-md">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white sm:mt-14 ">Contact Us</h2>
+                <h2 className=" mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white mt-16 sm:mt-2">Contact Us</h2>
                 <p className="mb-8 lg:mb-14 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
                 
                 <form  ref={form}
