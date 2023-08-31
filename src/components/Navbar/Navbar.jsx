@@ -22,8 +22,11 @@ const Navbar = () => {
                 <Link to={'/contact'}>
                     <li className="menuList text-[#6f6f6f] hover:text-blueColor">Contact</li>
                 </Link>
-                <Link to={'/blog'}>
-                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Blog</li>
+                <Link to={'/login'}>
+                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Login</li>
+                </Link>
+                <Link to={'/register'}>
+                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Register</li>
                 </Link>
             </div>
         </nav>
