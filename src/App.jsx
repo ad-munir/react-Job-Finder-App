@@ -9,6 +9,7 @@ import About from './components/About/About';
 import Blog from './components/Blog/Blog';
 import ApplicationForm from './components/ApplicationForm/ApplicationForm';
 import Test from './components/Test';
+import Contact from './components/Contact/Contact';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/about" element={<Layout><About /></Layout>} />
         <Route path="/blog" element={<Layout><Blog /> </Layout>} />
         <Route path="/apply" element={<ApplicationForm />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Layout><Home /></Layout>} />
         <Route path='/dd' element={<Test/>} />
       </Routes>
