@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { TbCloudUpload } from 'react-icons/tb';
+import { GrFormClose } from 'react-icons/gr';
 import { Link, useLocation } from 'react-router-dom';
 
 const ApplicationForm = () => {
@@ -7,37 +9,33 @@ const ApplicationForm = () => {
     const locate = useLocation();
     const { id, image, title, location, desc, company, type, level, createdAt } = locate.state;
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [resume, setResume] = useState(null);
-    const [coverLetter, setCoverLetter] = useState('');
-    const [submitting, setSubmitting] = useState(false);
+    const [files, setFiles] = useState([]);
+    const inputRef = useRef();
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        console.log(files);
+        console.log(files.length);
+    }, [files]);
 
-        // Create FormData to send files
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('resume', resume);
-        formData.append('coverLetter', coverLetter);
-
-        try {
-            const response = await axios.post('/submit-application', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-
-            console.log(response.data); // Application submitted successfully
-            // Optionally, you can show a success message to the user
-        } catch (error) {
-            console.error(error);
-            // Show an error message to the user
-        }
+    const handleDragOver = (event) => {
+        event.preventDefault();
     };
+
+
+    const handleDrop = (event) => {
+        event.preventDefault();
+        const droppedFiles = Array.from(event.dataTransfer.files);
+        setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
+    };
+
+
+    const removeFile = (index) => {
+        const updatedFiles = [...files];
+        updatedFiles.splice(index, 1);
+        setFiles(updatedFiles);
+    };
+
 
     return (
         <div className="min-h-[140vh] bg-gray-100 p-10 ">
@@ -73,23 +71,54 @@ const ApplicationForm = () => {
 
                             <div>
 
-                                <h6 className="mt-5 font-semibold ">Resume Attachement</h6>
+                                <h6 className="mt-5 font-semibold ">Resume Attachement<span className='text-red-500 font-semibold'>*</span></h6>
 
-                                <label className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                                    <span className="flex items-center space-x-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" strokeWidth="2">
-                                            <path strokeLinecap="round" strokeLinejoin="round"
-                                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                        </svg>
-                                        <span className="font-medium text-gray-600">
-                                            Drop files to Attach, or
-                                            <span className="text-blue-600 underline">browse</span>
-                                        </span>
-                                    </span>
-                                    <input type="file" name="resume" className="hidden" />
-                                </label>
+                                {files.length > 0 ?
+
+                                    <div className="uploads">
+                                        <ul>
+                                            {files.map((file, idx) =>
+                                                <li key={idx}
+                                                    className='flex justify-between p-[5px] my-1 rounded-[4px] bg-textColor text-xs w-full text-white font-semibold'
+                                                >
+                                                    {file.name}
+                                                    <GrFormClose onClick={() => removeFile(idx)} className='bg-white cursor-pointer' />
+                                                </li>
+                                            )}
+
+                                        </ul>
+                                    </div>
+
+                                    :
+
+                                    <div
+                                        className="flex flex-col justify-center items-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-lg appearance-none cursor-pointer hover:border-gray-400 focus:outline-none"
+                                        onDragOver={handleDragOver}
+                                        onDrop={handleDrop}
+                                    >
+                                        <div className="flex justify-center">
+                                            <span className="flex items-center space-x-2">
+                                                <TbCloudUpload className="text-3xl" />
+                                                <span className="font-medium text-gray-600">
+                                                    Drop file to Attach, or &nbsp;
+                                                    <span onClick={() => inputRef.current.click()} className="text-blue-600 underline">browse</span>
+                                                </span>
+                                                <br />
+                                            </span>
+                                            <input
+                                                type="file"
+                                                multiple
+                                                onChange={(event) => setFiles(Array.from(event.target.files))}
+                                                hidden
+                                                accept=".png, .jpeg, .jpg, .pdf"
+                                                ref={inputRef}
+                                            />
+                                        </div>
+
+                                        <h6 className='font-semibold text-gray-800 text-sm'>PDF, JPEG, JPG, PNG</h6>                                    </div>
+                                }
                             </div>
+
 
 
 
@@ -115,7 +144,7 @@ const ApplicationForm = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

@@ -81,3 +81,40 @@ const Test = () => {
 };
 
 export default Test;
+
+
+/*
+const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [resume, setResume] = useState(null);
+    const [coverLetter, setCoverLetter] = useState('');
+    const [submitting, setSubmitting] = useState(false);
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Create FormData to send files
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('resume', resume);
+        formData.append('coverLetter', coverLetter);
+
+        try {
+            const response = await axios.post('/submit-application', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            console.log(response.data); // Application submitted successfully
+            // Optionally, you can show a success message to the user
+        } catch (error) {
+            console.error(error);
+            // Show an error message to the user
+        }
+    };
+
+
+*/
