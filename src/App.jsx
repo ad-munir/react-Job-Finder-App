@@ -10,42 +10,15 @@ import About from './components/About/About';
 import ApplicationForm from './components/ApplicationForm/ApplicationForm';
 import Test from './components/Test';
 import Contact from './components/Contact/Contact';
-import { useEffect, useState } from 'react';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import LoginForm from './components/Auth/LoginForm';
-import { UserContext } from './Contexts/Contexts'
+import { UserProvider } from './Contexts/Contexts'
 function App() {
-
-  const userObj = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
-  }
-  const [user, setUser] = useState({});
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  };
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
 
-    <UserContext.Provider value={{ user, setUser }} >
+    <UserProvider>
       <Router>
-        {isLoggedIn &&
-          <>
-            <h1>Welcome!</h1>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        }
         <Routes>
           <Route path="/" exact element={<Layout><Home /></Layout>} />
           <Route path="/job-details" element={<Layout><JobDetails /></Layout>} />
@@ -61,7 +34,7 @@ function App() {
           <Route path='/dd' element={<Test />} />
         </Routes>
       </Router>
-    </UserContext.Provider>
+    </UserProvider>
   )
 }
 
