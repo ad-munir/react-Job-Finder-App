@@ -12,7 +12,7 @@ import Test from './components/Test';
 import Contact from './components/Contact/Contact';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import LoginForm from './components/Auth/LoginForm';
-import { UserProvider } from './Contexts/Contexts'
+import UserProvider from './Contexts/Contexts'
 function App() {
 
   return (

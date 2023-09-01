@@ -1,6 +1,23 @@
-import { Link } from "react-router-dom"
+/* eslint-disable react/prop-types */
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom"
+import { UserContext } from "../../Contexts/Contexts";
+import userImg from './../../assets/men.jpg'
 
 const Navbar = () => {
+
+
+    const navigate = useNavigate();
+    // Access the context data
+    const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
+
+    const handleSignOut = () => {
+        setUser({});
+        setIsLoggedIn(false);
+        navigate("/sign-in");
+    }
+
     return (
         <nav className="navBar flex justify-between items-center p-[3rem]">
             <Link to={'/'}>
@@ -22,22 +39,39 @@ const Navbar = () => {
                 <Link to={'/contact'}>
                     <li className="menuList text-[#6f6f6f] hover:text-blueColor">Contact</li>
                 </Link>
+
             </div>
 
             <div className="flex relative -right-28">
-                <Link to={'/sign-in'}>
+                {
+                    isLoggedIn ?
+                        <>
+                            <AvatarDropdown username={user.firstname} userImg={userImg} />
+                            <Link to={'/'}>
+                                <button 
+                                    onClick={handleSignOut}
+                                className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white">
+                                    <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-gray-900 rounded-md group-hover:bg-opacity-0">
+                                        Sign out
+                                    </span>
+                                </button>
+                            </Link>
+                        </>
+                        :
+                        <>
+                            <Link to={'/sign-in'}>
+                                <button className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+                                    <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-gray-900 rounded-md group-hover:bg-opacity-0">
+                                        Sign in
+                                    </span>
+                                </button>
+                            </Link>
 
-                    <button className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-                        <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-gray-900 rounded-md group-hover:bg-opacity-0">
-                            Sign in
-                        </span>
-                    </button>
-                </Link>
-
-                <Link to={'/sign-up'}>
-                    <button type="button" className="text-white bg-gradient-to-r from-blue-700 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Sign up</button>
-                </Link>
-
+                            <Link to={'/sign-up'}>
+                                <button type="button" className="text-white bg-gradient-to-r from-blue-700 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Sign up</button>
+                            </Link>
+                        </>
+                }
             </div>
         </nav>
     )
@@ -46,20 +80,16 @@ const Navbar = () => {
 export default Navbar
 
 
-// <nav className="relative select-none bg-primary lg:flex lg:items-stretch w-full">
-//             <div className="flex flex-no-shrink items-stretch h-12">
-//                 <a href="#" className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Tailwind</a>
-//                 <a href="#" className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Css</a>
-//                 <button className="block lg:hidden cursor-pointer ml-auto relative w-12 h-12 p-4">
-//                     <svg className="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
-//                     <svg className="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" /></svg>
-//                 </button>
-//             </div>
-//             <div className="lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow">
-//                 <div className="lg:flex lg:items-stretch lg:justify-end ml-auto">
-//                     <a href="#" className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Item 1</a>
-//                     <a href="#" className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Item 2</a>
-//                     <a href="#" className="flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center hover:bg-grey-dark">Item 3</a>
-//                 </div>
-//             </div>
-//         </nav>
+function AvatarDropdown({username, userImg}) {
+
+    return (
+        <div className="relative mr-3">
+
+            <div className="flex items-center space-x-1">
+                <img className="w-10 h-10 rounded-full border" src={userImg} alt="user" />
+                <div className="text-sm text-gray-500 font-semibold">{username}</div>
+            </div>
+
+        </div>
+    );
+}

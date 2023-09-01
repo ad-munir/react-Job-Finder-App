@@ -1,34 +1,30 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../Contexts/Contexts";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoginForm = () => {
 
-    const { user, setUser } = useContext(UserContext)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const notify = (text) => toast.error(text);
 
-    // Configure toast notifications globally
-    // toast.configure({
-    //     position: "top-right",
-    //     autoClose: 5000, // Close the toast after 5 seconds
-    //     hideProgressBar: false,
-    //     style: {
-    //         fontWeight: "bold", // Make the text bold
-    //     },
-    // });
+    const navigate = useNavigate();
+    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setUser({ ...user, email, password });
+        setUser({ ...user, firstname:"mounir", lastname:"ayad", email, password });
 
-        if(user.password === "000" && user.email === "user@gmail.com")
-                notify("success");
+        if(user.password === "000" && user.email === "user@gmail.com"){
+                setIsLoggedIn(true);
+                navigate('/');
+        }        
         else{
 
             if(user.password && user.email)
@@ -42,10 +38,7 @@ const LoginForm = () => {
                     notify("Please enter your password!");
                 }
             }
-
         }
-
-        
     };
 
     return (
