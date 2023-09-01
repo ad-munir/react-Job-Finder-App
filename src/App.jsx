@@ -10,45 +10,58 @@ import About from './components/About/About';
 import ApplicationForm from './components/ApplicationForm/ApplicationForm';
 import Test from './components/Test';
 import Contact from './components/Contact/Contact';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import LoginForm from './components/Auth/LoginForm';
-
+import { UserContext } from './Contexts/Contexts'
 function App() {
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const userObj = {
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+  }
+  const [user, setUser] = useState({});
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  
 
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
 
-    <Router>
-      {isLoggedIn &&
-        <>
-          <h1>Welcome, {username}!</h1>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      }
-      <Routes>
-        <Route path="/" exact element={<Layout><Home /></Layout>} />
-        <Route path="/job-details" element={<Layout><JobDetails /></Layout>} />
-        <Route path="/companies" element={<Layout><Companies /></Layout>} />
-        <Route path="/about" element={<Layout><About /></Layout>} />
-        <Route path="/apply" element={<ApplicationForm />} />
-        <Route path="/contact" element={<Contact />} />
+    <UserContext.Provider value={{ user, setUser }} >
+      <Router>
+        {isLoggedIn &&
+          <>
+            <h1>Welcome!</h1>
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        }
+        <Routes>
+          <Route path="/" exact element={<Layout><Home /></Layout>} />
+          <Route path="/job-details" element={<Layout><JobDetails /></Layout>} />
+          <Route path="/companies" element={<Layout><Companies /></Layout>} />
+          <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/apply" element={<ApplicationForm />} />
+          <Route path="/contact" element={<Contact />} />
 
           <Route path="/sign-up" element={<RegistrationForm />} />
           <Route path="/sign-in" element={<LoginForm />} />
 
-        <Route path="*" element={<Layout><Home /></Layout>} />
-        <Route path='/dd' element={<Test />} />
-      </Routes>
-    </Router>
+          <Route path="*" element={<Layout><Home /></Layout>} />
+          <Route path='/dd' element={<Test />} />
+        </Routes>
+      </Router>
+    </UserContext.Provider>
   )
 }
 
