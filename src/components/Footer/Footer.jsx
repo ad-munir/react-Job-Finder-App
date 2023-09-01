@@ -3,61 +3,59 @@ import { BsFacebook } from "react-icons/bs"
 
 const Footer = () => {
     return (
-        <div className="footer p-20 mb-5 bg-blueColor rounded-xl gap-8 grid grid-cols-5 m-auto items-start justify-center">
-            <div>
+        <div className="footer mb-5 bg-blueColor rounded-xl p-8 rounded-t-xl grid grid-cols-1 md:grid-cols-5 gap-4 m-auto items-start justify-center">
+            <div className="col-span-1 md:col-span-2">
                 <div className="logoDiv">
-                    <h1 className="logo text-[25px] text-white pb-6">
+                    <h1 className="logo text-3xl  text-white pb-4">
                         <strong>Job</strong>Finder
                     </h1>
                 </div>
-                <p className="text-white pb-[13px] opacity-70 leading-7">
+                <p className="text-white opacity-70 leading-7">
                     We always make our seekers and companies find the best jobs and employers the best talents.
                 </p>
             </div>
-            <div className="grid">
-                <span className="divTitle text-[18px] font-semibold pb-6 text-white ">
+            <div className="col-span-1 md:col-span-1">
+                <span className="divTitle text-xl font-semibold pb-4 text-white ">
                     Company
                 </span>
-                <div className="grid gap-3">
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Acount</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Support Center</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Feedback</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Contact Us</li>
-                </div>
+                <ul className="text-white opacity-70 hover:opacity-100">
+                    <li className="py-2">Account</li>
+                    <li className="py-2">Support Center</li>
+                    <li className="py-2">Feedback</li>
+                    <li className="py-2">Contact Us</li>
+                </ul>
             </div>
-            <div className="grid">
-                <span className="divTitle text-[18px] font-semibold pb-6 text-white ">
+            <div className="col-span-1 md:col-span-1">
+                <span className="divTitle text-xl font-semibold pb-4 text-white ">
                     Resources
                 </span>
-                <div className="grid gap-3">
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Events</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Promo</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Req Demo</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Careers</li>
-                </div>
+                <ul className="text-white opacity-70 hover:opacity-100">
+                    <li className="py-2">Events</li>
+                    <li className="py-2">Promo</li>
+                    <li className="py-2">Request Demo</li>
+                    <li className="py-2">Careers</li>
+                </ul>
             </div>
-            <div className="grid">
-                <span className="divTitle text-[18px] font-semibold pb-6 text-white ">
+            <div className="col-span-1 md:col-span-1">
+                <span className="divTitle text-xl font-semibold pb-4 text-white ">
                     Support
                 </span>
-                <div className="grid gap-3">
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Events</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Promo</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Req Demo</li>
-                    <li className="text-white opacity-[.7] hover:opacity-[1] ">Careers</li>
-                </div>
+                <ul className="text-white opacity-70 hover:opacity-100">
+                    <li className="py-2">Help Center</li>
+                    <li className="py-2">FAQs</li>
+                    <li className="py-2">Terms</li>
+                    <li className="py-2">Privacy Policy</li>
+                </ul>
             </div>
-            <div className="grid">
-                <span className="divTitle text-[18px] font-semibold text-white ">
+            <div className="col-span-1 md:col-span-1">
+                <span className="divTitle text-xl font-semibold text-white ">
                     Contact
                 </span>
-                <div>
-                    <small className="text-[14px] text-white">monirayad29@gmail.com</small>
-                    <div className="icons flex gap-4 py-4">
-                    <AiFillInstagram className="bg-white p-[8px] h-[35px] w-[35px] rounded-full icon text-blueColor "/>
-                    <BsFacebook className="bg-white p-[8px] h-[35px] w-[35px] rounded-full icon text-blueColor "/>
-                    <AiOutlineTwitter className="bg-white p-[8px] h-[35px] w-[35px] rounded-full icon text-blueColor "/>
-                    </div>
+                <p className="text-white text-sm pt-2 pb-4">monirayad29@gmail.com</p>
+                <div className="icons flex gap-4">
+                    <AiFillInstagram className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
+                    <BsFacebook className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
+                    <AiOutlineTwitter className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
                 </div>
             </div>
         </div>

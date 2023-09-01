@@ -5,7 +5,7 @@ const Value = () => {
     return (
         <div className="mb-1 mt-2">
             <h1 className="text-textColor text-2xl py-8 pb-[3rem] font-bold w-[400px] block">
-                The value that holds us true and to account
+                The values that hold us true and to account
             </h1>
 
             <div className="grid gap-40 grid-cols-3 items-center">
@@ -20,7 +20,7 @@ const Value = () => {
                         </span>
                     </div>
                     <p className="text-[13px] text-textColor opacity-[.7] py-4 font-semibold ">
-                        Things being made beautiful simple are at the heart of everything we do.
+                        Things being made beautifully simple are at the heart of everything we do.
                     </p>
                 </div>
 
@@ -30,11 +30,11 @@ const Value = () => {
                             <img src={simple} alt="" className="w-[100%]" />
                         </div>
                         <span className="font-semibold text-textColor text-[18px]">
-                            Simplicity
+                            Innovation
                         </span>
                     </div>
                     <p className="text-[13px] text-textColor opacity-[.7] py-4 font-semibold ">
-                        We believe in making things better or everonz, even if just by a little bit!
+                        We believe in making things better for everyone, even if just by a little bit!
                     </p>
                 </div>
 
@@ -44,11 +44,11 @@ const Value = () => {
                             <img src={simple} alt="" className="w-[100%]" />
                         </div>
                         <span className="font-semibold text-textColor text-[18px]">
-                            Simplicity
+                            Trust
                         </span>
                     </div>
                     <p className="text-[13px] text-textColor opacity-[.7] py-4 font-semibold ">
-                        We work on the basis of creating trust which can be nurtured through authenticity and transparency
+                        We work on the basis of creating trust, which can be nurtured through authenticity and transparency.
                     </p>
                 </div>
 
@@ -57,7 +57,7 @@ const Value = () => {
             <div className="card my-8 flex justify-between bg-blueColor p-20 rounded-xl">
                 <div>
                     <h1 className="text-blueColor text-3xl font-bold">
-                        Ready to switch your career
+                        Ready to switch your career?
                     </h1>
                     <h2 className="text-textColor text-2xl font-bold">
                         Let's get started!
