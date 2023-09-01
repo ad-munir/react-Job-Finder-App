@@ -8,8 +8,8 @@ export const UserContext = createContext();
 function UserProvider({ children }) {
 
     const userObj = {
-        firstname: 'mounir',
-        lastname: 'ayad',
+        firstname: 'ff',
+        lastname: 'll',
         email: 'user@gmail.com',
         password: '000',
     }

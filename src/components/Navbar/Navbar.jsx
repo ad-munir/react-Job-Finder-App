@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../Contexts/Contexts";
 import userImg from './../../assets/men.jpg'

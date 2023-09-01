@@ -1,12 +1,26 @@
 import { BiBookmarkAlt } from "react-icons/bi";
 import { IoBagRemoveSharp } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/Contexts";
 
 const JobDetails = () => {
 
+    const navigate = useNavigate();
+    
     const locate = useLocation();
     const { id, image, title, location, desc, company, type, level, createdAt } = locate.state;
+
+    const { isLoggedIn } = useContext(UserContext);
+
+    const handleApply = () => {
+        console.log(isLoggedIn)
+        if(isLoggedIn)
+            navigate('/apply',{state:{ id, image, title, location, desc, company, type, level, createdAt } });
+        else
+            navigate('/sign-in');
+    }
 
     return (
         <div className="grid gap-4 bg-slate-50 rounded-[10px] p-12 hover:shadow-lg mb-18">
@@ -19,11 +33,11 @@ const JobDetails = () => {
                     <h6 className="text-xl text-blueColor border-b w-fit border-blue-400 font-semibold cursor-pointer">{company}</h6>
 
                     <div className="flex gap-4 mt-8">
-                        <Link to={'/apply'} state={ { id, image, title, location, desc, company, type, level, createdAt } }>
-                            <button className='border-2 rounded-[10px] block px-6 h-[40px] bg-blueColor
+                            <button
+                                onClick={handleApply}
+                                className='border-2 rounded-[10px] block px-6 h-[40px] bg-blueColor
                                             text-[18px] font-semibold text-white hover:bg-white hover:text-textColor
                                             group-hover/item:text-textColor group-hover:text-textColor '>Apply Now</button>
-                        </Link>
 
 
                         <button className='border-2 rounded-[10px] block px-2 h-[40px]
