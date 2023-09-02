@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
 import { BiTimeFive } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import Loader from '../Loader/Loader';
 
 
 const Jobs = ({ data }) => {
 
 
-
+    const
 
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
+            <Loader />
             {data.map(({ id, image, title, location, desc, company, type, level, createdAt }) => {
 
                 const createdAtDate = new Date(createdAt); // Get the createdAt date

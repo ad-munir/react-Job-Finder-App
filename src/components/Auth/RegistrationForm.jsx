@@ -87,24 +87,26 @@ const RegistrationForm = () => {
         }
 
         // if all the conditions are valid, this means that the form is valid
-        notify('Form is valid')
+        handleRegistration();
     }
 
     const handleRegistration = async () => {
-        try {
-            // Make a POST request to the backend API to register the user
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
+        notify('Form is valid');
 
-            // Handle response, show success message or errors
-        } catch (error) {
-            console.error('Registration failed', error);
-        }
+        // try {
+        //     // Make a POST request to the backend API to register the user
+        //     const response = await fetch('/api/register', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify({ email, password }),
+        //     });
+
+        //     // Handle response, show success message or errors
+        // } catch (error) {
+        //     console.error('Registration failed', error);
+        // }
     };
 
     return (
