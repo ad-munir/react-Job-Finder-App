@@ -85,13 +85,13 @@ const Search = ({ data }) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading(true)
         
-
+        
         if (!jobTitle && !company && !location) {
             setError("Enter a job title, company or location to start a search.");
         } else {
-
+            
+            setLoading(true)
             const result = data.filter((item) => {
 
                 const createdAtDate = new Date(item.createdAt); // Get the createdAt date

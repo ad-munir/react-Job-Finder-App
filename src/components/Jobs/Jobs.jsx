@@ -1,13 +1,8 @@
 /* eslint-disable react/prop-types */
 import { BiTimeFive } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import Loader from '../Loader/Loader';
-import { useEffect, useState } from 'react';
-
 
 const Jobs = ({ data }) => {
-
-
 
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">

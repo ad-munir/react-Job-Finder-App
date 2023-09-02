@@ -44,10 +44,10 @@ li {
   background-color: #2a68ff;
   bottom: -10px;
   color: #2a68ff;
-  animation: move .3s;
+  animation: underline .3s;
 }
 
-@keyframes move {
+@keyframes underline {
   from {width: 0%;}
   to {width: 100%; }
 }
@@ -62,33 +62,6 @@ li {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-
-
-.nav-link {
-	font-size: 15px;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-
-
-.underline {
-	background-color: gold;
-	width: 0;
-	height: 2px;
-	transition: width 0.3s;
-}
-
-.nav-link:hover .underline {
-	width: 50px;
-}
-
 
 
 /* 

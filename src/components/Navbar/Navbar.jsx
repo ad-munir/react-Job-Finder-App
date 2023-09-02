@@ -27,7 +27,7 @@ const Navbar = () => {
             </Link>
 
             <div className="menu flex gap-8 text-[#6f6f6f] font-semibold">
-                <Link to={'/'}>
+                <Link to={'/jobs'}>
                     <li className="menuList  hover:text-blueColor">Jobs</li>
                 </Link>
                 <Link to={'/companies'}>

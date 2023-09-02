@@ -13,6 +13,8 @@ import Contact from './components/Contact/Contact';
 import RegistrationForm from './components/Auth/RegistrationForm';
 import LoginForm from './components/Auth/LoginForm';
 import UserProvider from './Contexts/Contexts'
+import Jobs from './components/Jobs/Jobs';
+import data from './data';
 function App() {
 
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/job-details" element={<Layout><JobDetails /></Layout>} />
           <Route path="/companies" element={<Layout><Companies /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
+          <Route path="/jobs" element={<Layout><Jobs data={data} /></Layout>} />
+          
           <Route path="/apply" element={<ApplicationForm />} />
           <Route path="/contact" element={<Contact />} />
 
