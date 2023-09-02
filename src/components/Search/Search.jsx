@@ -22,19 +22,28 @@ const Search = ({ data }) => {
     const [level, setLevel] = useState('all')
 
 
+    const [clearInput, setClearInput] = useState({
+        jobTitle: false,
+        company: false,
+        location: false,
+    });
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
         if (name === "jobTitle") {
             setJobTitle(value);
+            setClearInput((prevState) => ({ ...prevState, jobTitle: !!value }));
         }
 
         if (name === "company") {
             setCompany(value);
+            setClearInput((prevState) => ({ ...prevState, company: !!value }));
         }
 
         if (name === "location") {
             setLocation(value);
+            setClearInput((prevState) => ({ ...prevState, location: !!value }));
         }
     }
 
@@ -66,6 +75,11 @@ const Search = ({ data }) => {
         setType('');
         setLevel('');
         setFilteredJobs([]);
+        setClearInput({
+            jobTitle: false,
+            company: false,
+            location: false,
+        });
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -89,7 +103,7 @@ const Search = ({ data }) => {
                     item.location.toLowerCase().includes(location.toLowerCase()) &&
 
                     (
-                        time === "all" || 
+                        time === "all" ||
                         (time === "Today" && hoursDifference < 24) ||
                         (time === "This week" && hoursDifference < 24 * 7) ||
                         (time === "This month" && hoursDifference < 24 * 30)
@@ -119,7 +133,7 @@ const Search = ({ data }) => {
 
                     <div className="inputsDiv flex justify-between items-center rounded-[8px] gp-[10px] bg-white p-5 shadow-lg shadow-greyIsh-700 ">
 
-                        <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center w-full pr-6">
                             <AiOutlineSearch className='text-[25px] icon' />
                             <input
                                 type="text"
@@ -131,10 +145,18 @@ const Search = ({ data }) => {
                                 value={jobTitle}
                                 onChange={handleInputChange}
                             />
-                            <AiOutlineCloseCircle />
+                            {clearInput.jobTitle && (
+                                <AiOutlineCloseCircle
+                                    className='text-[20px] text-red-500 cursor-pointer'
+                                    onClick={() => {
+                                        setJobTitle('');
+                                        setClearInput((prevState) => ({ ...prevState, jobTitle: false }));
+                                    }}
+                                />
+                            )}
                         </div>
 
-                        <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center w-full pr-6">
                             <BsHouseDoor className='text-[25px] icon' />
                             <input
                                 type="text"
@@ -146,10 +168,18 @@ const Search = ({ data }) => {
                                 value={company}
                                 onChange={handleInputChange}
                             />
-                            <AiOutlineCloseCircle />
+                            {clearInput.company && (
+                                <AiOutlineCloseCircle
+                                    className='text-[20px] text-red-500 cursor-pointer'
+                                    onClick={() => {
+                                        setCompany('');
+                                        setClearInput((prevState) => ({ ...prevState, company: false }));
+                                    }}
+                                />
+                            )}
                         </div>
 
-                        <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center w-full pr-6">
                             <CiLocationOn className='text-[25px] icon' />
                             <input
                                 type="text"
@@ -161,7 +191,15 @@ const Search = ({ data }) => {
                                 value={location}
                                 onChange={handleInputChange}
                             />
-                            <AiOutlineCloseCircle />
+                            {clearInput.location && (
+                                <AiOutlineCloseCircle
+                                    className='text-[20px] text-red-500 cursor-pointer'
+                                    onClick={() => {
+                                        setLocation('');
+                                        setClearInput((prevState) => ({ ...prevState, location: false }));
+                                    }}
+                                />
+                            )}
                         </div>
 
                         <button className='bg-blueColor  p-3 px-8 rounded-[10px] 
@@ -226,7 +264,7 @@ const Search = ({ data }) => {
                         </select>
                     </div>
 
-                    <span 
+                    <span
                         className="text-[#a1a1a1] cursor-pointer"
                         onClick={handleClear}
                     >Clear All</span>

@@ -26,18 +26,18 @@ const Navbar = () => {
                 </h1>
             </Link>
 
-            <div className="menu flex gap-8">
+            <div className="menu flex gap-8 text-[#6f6f6f] font-semibold">
                 <Link to={'/'}>
-                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Jobs</li>
+                    <li className="menuList  hover:text-blueColor">Jobs</li>
                 </Link>
                 <Link to={'/companies'}>
-                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Companies</li>
+                    <li className="menuList hover:text-blueColor">Companies</li>
                 </Link>
                 <Link to={'/about'}>
-                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">About</li>
+                    <li className="menuList hover:text-blueColor">About</li>
                 </Link>
                 <Link to={'/contact'}>
-                    <li className="menuList text-[#6f6f6f] hover:text-blueColor">Contact</li>
+                    <li className="menuList hover:text-blueColor">Contact</li>
                 </Link>
 
             </div>

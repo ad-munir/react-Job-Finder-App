@@ -1,4 +1,4 @@
-import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai"
+import { AiFillInstagram, AiFillLinkedin, AiOutlineTwitter } from "react-icons/ai"
 import { BsFacebook } from "react-icons/bs"
 
 const Footer = () => {
@@ -56,6 +56,7 @@ const Footer = () => {
                     <AiFillInstagram className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
                     <BsFacebook className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
                     <AiOutlineTwitter className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
+                    <AiFillLinkedin className="bg-white p-2 h-10 w-10 rounded-full icon text-blueColor" />
                 </div>
             </div>
         </div>
