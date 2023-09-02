@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { UserContext } from "../../Contexts/Contexts";
 
 const RegistrationForm = () => {
 
@@ -11,6 +12,13 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [toBeconfirmed, setToBeconfirmed] = useState('');
+
+
+    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+
 
     const notify = (text) => toast.error(text);
 
@@ -93,6 +101,10 @@ const RegistrationForm = () => {
     const handleRegistration = async () => {
         notify('Form is valid');
 
+        setUser({ ...user, firstName, lastName, email, password });
+        setIsLoggedIn(true);
+        navigate('/');
+
         // try {
         //     // Make a POST request to the backend API to register the user
         //     const response = await fetch('/api/register', {
@@ -125,23 +137,23 @@ const RegistrationForm = () => {
                             </h1>
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <div>
-                                    <label htmlFor="firstname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your first name</label>
+                                    <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your first name</label>
                                     <input
                                         type="text"
-                                        name="firstname"
+                                        name="firstName"
                                         onChange={(e) => setFirstName(e.target.value)}
-                                        id="firstname"
+                                        id="firstName"
                                         placeholder="First name"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="" />
                                 </div>
                                 <div>
-                                    <label htmlFor="lastname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your last name</label>
+                                    <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your last name</label>
                                     <input
                                         type="text"
-                                        name="lastname"
+                                        name="lastName"
                                         onChange={(e) => setLastName(e.target.value)}
-                                        id="lastname"
+                                        id="lastName"
                                         placeholder="Last name"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="" />

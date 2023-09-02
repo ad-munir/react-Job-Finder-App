@@ -46,7 +46,7 @@ const Navbar = () => {
                 {
                     isLoggedIn ?
                         <>
-                            <AvatarDropdown username={user.firstname} userImg={userImg} />
+                            <AvatarDropdown username={user.firstName} userImg={userImg} />
                             <Link to={'/'}>
                                 <button 
                                     onClick={handleSignOut}

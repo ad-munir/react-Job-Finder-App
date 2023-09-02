@@ -19,7 +19,7 @@ const LoginForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setUser({ ...user, firstname:"mounir", lastname:"ayad", email, password });
+        setUser({ ...user, firstName:"mounir", lastName:"ayad", email, password });
 
         if(user.password === "000" && user.email === "user@gmail.com"){
                 setIsLoggedIn(true);
