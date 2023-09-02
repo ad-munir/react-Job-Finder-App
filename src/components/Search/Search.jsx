@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineSearch, AiOutlineCloseCircle, AiFillCloseSquare } from 'react-icons/ai';
 import { BsHouseDoor } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import Jobs from '../Jobs/Jobs';
+import Loader from '../Loader/Loader';
 
 const Search = ({ data }) => {
 
@@ -20,6 +21,7 @@ const Search = ({ data }) => {
     const [time, setTime] = useState('all')
     const [type, setType] = useState('all')
     const [level, setLevel] = useState('all')
+    const [skeleton, setSkeleton] = useState(false);
 
 
     const [clearInput, setClearInput] = useState({
@@ -83,6 +85,8 @@ const Search = ({ data }) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true)
+        
 
         if (!jobTitle && !company && !location) {
             setError("Enter a job title, company or location to start a search.");
@@ -115,8 +119,16 @@ const Search = ({ data }) => {
 
             setFilteredJobs(result);
             setError('');
+
+            setTimeout(() => {
+                setLoading(false)
+            }, 1000);
         }
     }
+
+
+
+    const [loading, setLoading] = useState(false);
 
 
     return (
@@ -272,6 +284,14 @@ const Search = ({ data }) => {
                 </div>
             </div>
 
+
+            {loading &&
+                <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
+
+                    <Loader />
+                    <Loader />
+                    <Loader />
+                </div>}
             <Jobs data={filteredJobs} />
         </div>
     )

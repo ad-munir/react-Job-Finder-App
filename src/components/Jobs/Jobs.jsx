@@ -2,17 +2,16 @@
 import { BiTimeFive } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import { useEffect, useState } from 'react';
 
 
 const Jobs = ({ data }) => {
 
 
-    const
 
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
-            <Loader />
             {data.map(({ id, image, title, location, desc, company, type, level, createdAt }) => {
 
                 const createdAtDate = new Date(createdAt); // Get the createdAt date
@@ -45,7 +44,7 @@ const Jobs = ({ data }) => {
                             <span className='text-[14px] py-4 block group-hover:to-white'>{company}</span>
                         </div>
 
-                        <Link to="/job-details" state={ { id, image, title, location, desc, company, type, level, createdAt } }>
+                        <Link to="/job-details" state={{ id, image, title, location, desc, company, type, level, createdAt }}>
                             <button className='border-2 rounded-[10px] block p-2 w-full
                             text-sm font-semibold text-textColor hover:bg-white
                             group-hover/item:text-textColor group-hover:text-textColor '>Apply</button>
