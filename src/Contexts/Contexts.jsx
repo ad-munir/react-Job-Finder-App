@@ -18,9 +18,9 @@ function UserProvider({ children }) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
-    useEffect(() => {
-        console.log(user);
-    }, [user]);
+    // useEffect(() => {
+    //     console.log(user);
+    // }, [user]);
 
 
 

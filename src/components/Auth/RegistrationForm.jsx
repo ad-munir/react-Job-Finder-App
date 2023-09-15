@@ -3,12 +3,14 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../../Contexts/Contexts";
+import axios from "axios";
 
 const RegistrationForm = () => {
 
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [toBeconfirmed, setToBeconfirmed] = useState('');
@@ -89,21 +91,38 @@ const RegistrationForm = () => {
             return
         }
 
-        if( password !== toBeconfirmed){
+        if (password !== toBeconfirmed) {
             notify('Password is not confirmed!')
             return
         }
 
+        setUsername(`${lastName.toLowerCase}_${firstName.toLowerCase}`);
         // if all the conditions are valid, this means that the form is valid
         handleRegistration();
     }
 
     const handleRegistration = async () => {
-        notify('Form is valid');
 
-        setUser({ ...user, firstName, lastName, email, password });
-        setIsLoggedIn(true);
-        navigate('/');
+        
+        await axios.post("http://localhost:8080/api/auth/signup", {
+            firstname: firstName,
+            lastname: lastName,
+            username: username,
+            email: email,
+            password: password
+        })
+        .then((response) => {
+            toast.success(response.data);
+        })
+        .catch((error) => {
+            notify('Registration failed', error);
+            return;
+        });
+
+        // toast.success("Registation Successfully!");
+        // setUser({ ...user, firstName, lastName, email, password });
+        // setIsLoggedIn(true);
+        // navigate('/');
 
         // try {
         //     // Make a POST request to the backend API to register the user

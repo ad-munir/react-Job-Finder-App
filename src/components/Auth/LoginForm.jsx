@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { UserContext } from "../../Contexts/Contexts";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 const LoginForm = () => {
 
@@ -16,34 +18,74 @@ const LoginForm = () => {
 
 
 
-    const handleSubmit = (e) => {
+    const validateForm = (e) => {
         e.preventDefault();
 
-        setUser({ ...user, firstName:"mounir", lastName:"ayad", email, password });
+        // setUser({ ...user, firstName: "mounir", lastName: "ayad", email, password });
 
-        if(user.password === "000" && user.email === "user@gmail.com"){
-                setIsLoggedIn(true);
-                navigate('/');
-        }        
-        else{
+        // if (user.password === "000" && user.email === "user@gmail.com") {
+        //     handleLogin();
+        //     setIsLoggedIn(true);
+        //     navigate('/');
+        // }
+        // else {
 
-            if(user.password && user.email)
-                notify("Invalid credentials!");
-            else {
-                if (user.email === ""){
-                    notify("Please enter your email!");
-                }
-        
-                if (user.password === ""){
-                    notify("Please enter your password!");
-                }
-            }
-        }
+        //     if (user.password && user.email)
+        //         notify("Invalid credentials!");
+        //     else {
+        //         if (user.email === "") {
+        //             notify("Please enter your email!");
+        //         }
+
+        //         if (user.password === "") {
+        //             notify("Please enter your password!");
+        //         }
+        //     }
+        // }
+
+        handleLogin();
     };
+
+
+    async function handleLogin() {
+
+        try {
+            await axios.post("http://localhost:8080/api/auth/signin", {
+                usernameOrEmail: email,
+                password: password,
+            }).then((res) => {
+                console.log(res);
+                console.log("-----------------")
+                console.log("-----------------")
+                console.log(res.data);
+
+                // if (res.data.message == "Email not exits") {
+                //     alert("Email not exits");
+                // }
+                // else if (res.data.message == "Login Success") {
+
+                //     navigate('/home');
+                // }
+                // else {
+                //     alert("Incorrect Email and Password not match");
+                // }
+            }, fail => {
+                console.log("-----------------")
+                console.log("-----------------")
+                console.error(fail); // Error!
+                console.log(fail.message); // Error!
+            });
+        }
+
+        catch (err) {
+            alert(err);
+        }
+
+    }
 
     return (
         <>
-            <ToastContainer className={"font-semibold text-red-600"}/>
+            <ToastContainer className={"font-semibold text-red-600"} />
             <section className="bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -96,7 +138,7 @@ const LoginForm = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    onClick={handleSubmit}
+                                    onClick={validateForm}
                                     className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                                 >
                                     Sign in
