@@ -7,7 +7,7 @@ const Jobs = ({ data }) => {
     return (
         <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
-            {data.map(({ id, image, title, location, desc, company, type, level, createdAt }) => {
+            {data.map(({ id, image, title, location, desc, company, type, level, createdAt }, index) => {
 
                 const createdAtDate = new Date(createdAt); // Get the createdAt date
                 const currentDate = new Date(); // Get the current date
@@ -17,7 +17,7 @@ const Jobs = ({ data }) => {
 
 
                 return (
-                    <div key={id}
+                    <div key={index}
                         className="group group/item singleJob w-[250px] p-5 bg-white rounded-[10px]
                                 hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg">
 

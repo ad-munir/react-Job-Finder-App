@@ -7,21 +7,38 @@ import { BsHouseDoor } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import Jobs from '../Jobs/Jobs';
 import Loader from '../Loader/Loader';
+import { request } from '../../Service/AuthHelper';
 
-const Search = ({ data }) => {
+const Search = () => {
 
+    const [data, setData] = useState([]);
     const [filteredJobs, setFilteredJobs] = useState([]);
+
+    useEffect(() => {
+        
+        request(
+            "GET",
+            "/api/v1/data/offers",
+            {}
+        )
+        .then(response => {
+            setData(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    }, [])
+
 
     const [jobTitle, setJobTitle] = useState('');
     const [company, setCompany] = useState('');
     const [location, setLocation] = useState('');
     const [error, setError] = useState('');
 
-
     const [time, setTime] = useState('all')
     const [type, setType] = useState('all')
     const [level, setLevel] = useState('all')
-    const [skeleton, setSkeleton] = useState(false);
 
 
     const [clearInput, setClearInput] = useState({

@@ -1,27 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const UserContext = createContext();
 
 // Create a provider component to wrap the app
 function UserProvider({ children }) {
 
-    const userObj = {
-        firstname: 'ff',
-        lastname: 'll',
-        email: 'user@gmail.com',
-        password: '000',
-    }
     const [user, setUser] = useState({});
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
-    // useEffect(() => {
-    //     console.log(user);
-    // }, [user]);
-
 
 
     return (
