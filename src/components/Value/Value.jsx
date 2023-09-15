@@ -63,10 +63,12 @@ const Value = () => {
                         Let's get started!
                     </h2>
                 </div>
-                <button className='border-[2px] rounded-xl py-1 px-12 text-lg 
+                <a href="#search-box">
+                    <button className='border-[2px] rounded-xl py-1 px-12 text-lg 
                             font-semibold bg-white text-blueColor border-blueColor hover:bg-inherit'>
                     Get Started
                 </button>
+                </a>
             </div>
         </div>
     )

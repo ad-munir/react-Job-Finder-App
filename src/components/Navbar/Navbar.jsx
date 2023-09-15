@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../Contexts/Contexts";
 import userImg from './../../assets/men.jpg'
+import { setAuthHeader } from "../../Service/AuthHelper";
 
 const Navbar = () => {
 
@@ -13,9 +14,10 @@ const Navbar = () => {
 
 
     const handleSignOut = () => {
+        setAuthHeader(null)
         setUser({});
         setIsLoggedIn(false);
-        navigate("/sign-in");
+        navigate("/");
     }
 
     return (
@@ -47,15 +49,13 @@ const Navbar = () => {
                     isLoggedIn ?
                         <>
                             <AvatarDropdown username={user.firstName} userImg={userImg} />
-                            <Link to={'/'}>
-                                <button 
-                                    onClick={handleSignOut}
-                                    className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 hover:text-white focus:outline-none">
-                                    <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-gray-900 rounded-md group-hover:bg-opacity-0">
-                                        Sign out
-                                    </span>
-                                </button>
-                            </Link>
+                            <button 
+                                onClick={handleSignOut}
+                                className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 hover:text-white focus:outline-none">
+                                <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-gray-900 rounded-md group-hover:bg-opacity-0">
+                                    Sign out
+                                </span>
+                            </button>
                         </>
                         :
                         <>

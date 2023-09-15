@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../../Contexts/Contexts";
 import axios from "axios";
+import { request, setAuthHeader } from "../../Service/AuthHelper";
 
 const RegistrationForm = () => {
 
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [username, setUsername] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [toBeconfirmed, setToBeconfirmed] = useState('');
@@ -28,13 +28,13 @@ const RegistrationForm = () => {
     function validateForm(e) {
         e.preventDefault();
         // Check if the First Name is an Empty string or not.
-        if (firstName.length == 0) {
+        if (firstname.length == 0) {
             notify('First Name can not be empty')
             return
         }
 
         // Check if the First Name is an Empty string or not.
-        if (lastName.length == 0) {
+        if (lastname.length == 0) {
             notify('Last Name can not be empty')
             return
         }
@@ -96,48 +96,38 @@ const RegistrationForm = () => {
             return
         }
 
-        setUsername(`${lastName.toLowerCase}_${firstName.toLowerCase}`);
         // if all the conditions are valid, this means that the form is valid
         handleRegistration();
     }
 
-    const handleRegistration = async () => {
+    const handleRegistration = () => {
 
-        
-        await axios.post("http://localhost:8080/api/auth/signup", {
-            firstname: firstName,
-            lastname: lastName,
-            username: username,
-            email: email,
-            password: password
-        })
-        .then((response) => {
-            toast.success(response.data);
-        })
-        .catch((error) => {
-            notify('Registration failed', error);
-            return;
-        });
+        request(
+            'POST',
+            '/api/v1/auth/register',
+            {
+                firstname,
+                lastname,
+                email,
+                password
+                // role: "ADMIN" // this is in case of admin registration
+            }
+        )
+        .then(
+            (response) => {
+                console.log(response);
+                console.log(response.data.token);
+                setAuthHeader(response.data.token);
+                setIsLoggedIn(true);
+                setUser({ ...user, firstname, lastname, email, password });
+                navigate('/');
+            }).catch(
+            (error) => {
+                console.log(error);
+                setAuthHeader(null);
+            }
+        );
 
-        // toast.success("Registation Successfully!");
-        // setUser({ ...user, firstName, lastName, email, password });
-        // setIsLoggedIn(true);
-        // navigate('/');
-
-        // try {
-        //     // Make a POST request to the backend API to register the user
-        //     const response = await fetch('/api/register', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({ email, password }),
-        //     });
-
-        //     // Handle response, show success message or errors
-        // } catch (error) {
-        //     console.error('Registration failed', error);
-        // }
     };
 
     return (
@@ -156,23 +146,23 @@ const RegistrationForm = () => {
                             </h1>
                             <form className="space-y-4 md:space-y-6" action="#">
                                 <div>
-                                    <label htmlFor="firstName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your first name</label>
+                                    <label htmlFor="firstname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your first name</label>
                                     <input
                                         type="text"
-                                        name="firstName"
-                                        onChange={(e) => setFirstName(e.target.value)}
-                                        id="firstName"
+                                        name="firstname"
+                                        onChange={(e) => setFirstname(e.target.value)}
+                                        id="firstname"
                                         placeholder="First name"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="" />
                                 </div>
                                 <div>
-                                    <label htmlFor="lastName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your last name</label>
+                                    <label htmlFor="lastname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your last name</label>
                                     <input
                                         type="text"
-                                        name="lastName"
-                                        onChange={(e) => setLastName(e.target.value)}
-                                        id="lastName"
+                                        name="lastname"
+                                        onChange={(e) => setLastname(e.target.value)}
+                                        id="lastname"
                                         placeholder="Last name"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="" />

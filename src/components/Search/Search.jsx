@@ -132,7 +132,7 @@ const Search = ({ data }) => {
 
 
     return (
-        <div className="search">
+        <div className="search-box" id='search-box'>
             {error &&
                 <div className='text-red-700 bg-rose-100 font-semibold py-4 px-10 rounded border border-red-500 shadow-lg w-[50%] m-auto mb-8 flex items-center justify-between'>
                     <span>{error}</span>
@@ -287,7 +287,6 @@ const Search = ({ data }) => {
 
             {loading &&
                 <div className="JobsContainer flex gap-10 justify-center flex-wrap items-center py-10">
-
                     <Loader />
                     <Loader />
                     <Loader />

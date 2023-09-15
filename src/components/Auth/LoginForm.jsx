@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { request, setAuthHeader } from "../../Service/AuthHelper";
 
 const LoginForm = () => {
 
@@ -21,66 +22,45 @@ const LoginForm = () => {
     const validateForm = (e) => {
         e.preventDefault();
 
-        // setUser({ ...user, firstName: "mounir", lastName: "ayad", email, password });
+        // Check if the Email is an Empty string or not.
+        if (email.length == 0) {
+            notify('Email Address can not be blank')
+            return
+        }
 
-        // if (user.password === "000" && user.email === "user@gmail.com") {
-        //     handleLogin();
-        //     setIsLoggedIn(true);
-        //     navigate('/');
-        // }
-        // else {
-
-        //     if (user.password && user.email)
-        //         notify("Invalid credentials!");
-        //     else {
-        //         if (user.email === "") {
-        //             notify("Please enter your email!");
-        //         }
-
-        //         if (user.password === "") {
-        //             notify("Please enter your password!");
-        //         }
-        //     }
-        // }
+        if (password.length == 0) {
+            notify('Password must can not be blank')
+            return
+        }
 
         handleLogin();
     };
 
 
-    async function handleLogin() {
+    const handleLogin = () => {
 
-        try {
-            await axios.post("http://localhost:8080/api/auth/signin", {
-                usernameOrEmail: email,
-                password: password,
-            }).then((res) => {
-                console.log(res);
-                console.log("-----------------")
-                console.log("-----------------")
-                console.log(res.data);
-
-                // if (res.data.message == "Email not exits") {
-                //     alert("Email not exits");
-                // }
-                // else if (res.data.message == "Login Success") {
-
-                //     navigate('/home');
-                // }
-                // else {
-                //     alert("Incorrect Email and Password not match");
-                // }
-            }, fail => {
-                console.log("-----------------")
-                console.log("-----------------")
-                console.error(fail); // Error!
-                console.log(fail.message); // Error!
-            });
-        }
-
-        catch (err) {
-            alert(err);
-        }
-
+        request(
+            "POST",
+            "/api/v1/auth/authenticate",
+            { 
+                email, 
+                password
+            }
+        )
+        .then(
+            (response) => {
+                console.log(response.data.token);
+                setAuthHeader(response.data.token);
+                setIsLoggedIn(true);
+                navigate(-1);
+            }).catch(
+            (error) => {
+                console.log(error);
+                notify(error.response.data.message);
+                setIsLoggedIn(false);
+                setAuthHeader(null);
+            }
+        );
     }
 
     return (
@@ -120,22 +100,6 @@ const LoginForm = () => {
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     />
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-start">
-                                        <div className="flex items-center h-5">
-                                            <input
-                                                id="remember"
-                                                aria-describedby="remember"
-                                                type="checkbox"
-                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                            />
-                                        </div>
-                                        <div className="ml-3 text-sm">
-                                            <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
-                                        </div>
-                                    </div>
-                                    <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
-                                </div>
                                 <button
                                     type="submit"
                                     onClick={validateForm}
@@ -143,6 +107,9 @@ const LoginForm = () => {
                                 >
                                     Sign in
                                 </button>
+                                <div className="flex items-center justify-between">
+                                    <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                                </div>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet?
                                     <Link to={'/sign-up'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
