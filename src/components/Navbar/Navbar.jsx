@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../Contexts/Contexts";
@@ -10,13 +9,13 @@ const Navbar = () => {
 
     const navigate = useNavigate();
     // Access the context data
-    const { user, setUser, isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+    const { user, setUser, loggedIn, setLoggedIn } = useContext(UserContext);
 
 
     const handleSignOut = () => {
         setAuthHeader(null)
         setUser({});
-        setIsLoggedIn(false);
+        setLoggedIn(false);
         navigate("/");
     }
 
@@ -46,9 +45,9 @@ const Navbar = () => {
 
             <div className="flex relative -right-28">
                 {
-                    isLoggedIn ?
+                    loggedIn ?
                         <>
-                            <AvatarDropdown username={user.firstName} userImg={userImg} />
+                            <AvatarDropdown username={user.firstname} userImg={userImg} />
                             <button 
                                 onClick={handleSignOut}
                                 className="flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold text-gray-900 rounded-lg group bg-gradient-to-br from-blue-700 to-blue-500 hover:text-white focus:outline-none">

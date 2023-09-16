@@ -6,8 +6,7 @@ import { request } from '../../Service/AuthHelper';
 const Home = () => {
 
     return (
-        <div className="home">
-            
+        <div className="home" id='home'>
             <Search />
             <Value />
         </div>

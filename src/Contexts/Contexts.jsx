@@ -7,11 +7,11 @@ function UserProvider({ children }) {
 
     const [user, setUser] = useState({});
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
 
 
     return (
-        <UserContext.Provider value={{ user, setUser , isLoggedIn, setIsLoggedIn }}>
+        <UserContext.Provider value={{ user, setUser , loggedIn, setLoggedIn }}>
             {children}
         </UserContext.Provider>
     );

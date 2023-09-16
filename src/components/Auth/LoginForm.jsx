@@ -15,7 +15,7 @@ const LoginForm = () => {
     const notify = (text) => toast.error(text);
 
     const navigate = useNavigate();
-    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+    const { user, setUser, setLoggedIn } = useContext(UserContext);
 
 
 
@@ -49,15 +49,21 @@ const LoginForm = () => {
         )
         .then(
             (response) => {
-                console.log(response.data.token);
+                console.log(response.data);
                 setAuthHeader(response.data.token);
-                setIsLoggedIn(true);
+                setLoggedIn(true);
+                setUser({
+                    firstname : response.data.firstname,
+                    lastname : response.data.lastname,
+                    email, 
+                    password 
+                });
                 navigate(-1);
             }).catch(
             (error) => {
                 console.log(error);
                 notify(error.response.data.message);
-                setIsLoggedIn(false);
+                setLoggedIn(false);
                 setAuthHeader(null);
             }
         );
