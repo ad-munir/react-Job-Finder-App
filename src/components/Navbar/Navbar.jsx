@@ -20,7 +20,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navBar flex justify-between items-center p-[3rem]">
+        <nav className="navBar flex justify-between items-center px-12 pt-12">
             <Link to={'/'}>
                 <h1 className="logo text-[25px] text-blueColor">
                     <strong>Job</strong>Finder
