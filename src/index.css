@@ -80,6 +80,27 @@ li {
 );
 }
 
+#add-offer-btn:hover {
+  background-image: linear-gradient(
+  45deg,
+  hsl(180deg 7% 85%) 0%,
+  hsl(187deg 26% 83%) 11%,
+  hsl(193deg 41% 81%) 22%,
+  hsl(200deg 52% 78%) 33%,
+  hsl(207deg 62% 75%) 44%,
+  hsl(187deg 92% 77%) 75%,
+  hsl(181deg 81% 77%) 87%,
+  hsl(174deg 83% 80%) 100%
+  );
+}
+
+.banner {
+  background-image: url('./assets/banner1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 15px;
+}
+
 /* 
 h1 {
   font-size: 3.2em;

@@ -149,7 +149,7 @@ const Search = () => {
 
 
     return (
-        <div className="search-box" id='search-box'>
+        <div className="search-box  my-8 " id='search-box'>
             {error &&
                 <div className='text-red-700 bg-rose-100 font-semibold py-4 px-10 rounded border border-red-500 shadow-lg w-[50%] m-auto mb-8 flex items-center justify-between'>
                     <span>{error}</span>

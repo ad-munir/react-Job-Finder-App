@@ -1,15 +1,26 @@
+import { useContext } from 'react';
 import Search from './../Search/Search';
 import Value from './../Value/Value';
-import { useEffect, useState } from 'react';
-import { request } from '../../Service/AuthHelper';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../Contexts/Contexts';
 
 const Home = () => {
 
+    const { loggedIn } = useContext(UserContext);
+
     return (
         <div className="home" id='home'>
-            <div className='h-12 w-max flex items-center p-4 my-6 -ml-28 font-semibold text-textColor rounded' id='add-offer-btn'>
-                Entreprise/ Add an offer
-            </div>
+
+            {!loggedIn ?
+                <Link to={'/new-offer'}
+                    className='h-12 w-max flex items-center  my-6  p-4 -ml-28 font-semibold text-textColor rounded cursor-pointer'
+                    id='add-offer-btn'>
+                    Entreprise/ Add an offer
+                </Link>
+
+                :
+                <div className="h-12  my-3"></div>
+            }
             <Search />
             <Value />
         </div>
