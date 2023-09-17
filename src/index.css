@@ -101,6 +101,62 @@ li {
   border-radius: 15px;
 }
 
+
+.custom-checkbox {
+}
+
+.custom-checkbox + label {
+  position: relative;
+  padding-left: 24px; /* Adjust this value to control the checkbox's size */
+  cursor: pointer;
+}
+
+.custom-checkbox + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px; /* Adjust this value to control the checkbox's size */
+  height: 16px; /* Adjust this value to control the checkbox's size */
+  background-color: transparent;
+  border-radius: 15px;
+}
+
+.custom-checkbox:checked + label:before {
+  background-color: #000; /* Color when checked */
+  border: none; /* Remove border when checked */
+}
+
+
+
+/* Button.css */
+
+.offer-type-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: max-content;
+  font-weight: 600;
+  border: solid 2px #007bff; /* Button background color */
+  color: #007bff; /* Text color */
+  border-radius: 20px; /* Adjust the border radius to make it more or less rounded */
+  padding: 4px 12px; /* Adjust padding as needed */
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.offer-type-btn .icon {
+  font-size: 20px;
+  margin-right: 8px; /* Adjust the spacing between the icon and text */
+}
+
+.offer-type-btn.closed {
+  background-color: #007bff; /* Change the background color when closed */
+  color: #fff;
+}
+
+
 /* 
 h1 {
   font-size: 3.2em;

@@ -14,6 +14,7 @@ import UserProvider from './Contexts/Contexts'
 import Jobs from './components/Jobs/Jobs';
 import data from './data';
 import AddOffer from './components/AddOffer/AddOffer';
+import RegisterCompany from './components/RegisterCompany/RegisterCompany';
 function App() {
 
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/companies" element={<Layout><Companies /></Layout>} />
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/jobs" element={<Layout><Jobs data={data} /></Layout>} />
+          <Route path="/create-employer-account" element={<Layout><RegisterCompany /></Layout>} />
           <Route path="/new-offer" element={<Layout><AddOffer /></Layout>} />
           
           <Route path="/apply" element={<ApplicationForm />} />
