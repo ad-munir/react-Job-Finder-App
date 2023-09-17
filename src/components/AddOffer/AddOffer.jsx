@@ -8,6 +8,8 @@ const AddOffer = () => {
     const navigate = useNavigate();
 
     const [selectedTypes, setSelectedTypes] = useState([]);
+    const [minSalary, setMinSalary] = useState(0);
+    const [maxSalary, setMaxSalary] = useState(0);
 
     const handleTypeSelection = (type) => {
         if (selectedTypes.includes(type)) {
@@ -24,7 +26,9 @@ const AddOffer = () => {
 
     useEffect(() => {
         console.log(selectedTypes); // Log the updated state after each render
-    }, [selectedTypes]);
+        console.log("min " + minSalary)
+        console.log("max " + maxSalary)
+    }, [minSalary, maxSalary, selectedTypes]);
 
     return (
         <div className="min-h-screen border rounded-[15px] my-8 mx-48 mb-16">
@@ -56,6 +60,7 @@ const AddOffer = () => {
                                     name="min"
                                     id="min"
                                     min={1}
+                                    onChange={(e) => setMinSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
                             </div>
@@ -65,6 +70,8 @@ const AddOffer = () => {
                                     type="number"
                                     name="max"
                                     id="max"
+                                    min={1}
+                                    onChange={(e) => setMaxSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
                             </div>
