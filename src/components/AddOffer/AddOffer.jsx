@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import OfferTypeBtn from '../OfferTypeBtn/OfferTypeBtn';
 import { useNavigate } from 'react-router-dom';
+import TextEditor from '../TextEditor/TextEditor';
 
 
 const AddOffer = () => {
@@ -10,6 +11,7 @@ const AddOffer = () => {
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [minSalary, setMinSalary] = useState(0);
     const [maxSalary, setMaxSalary] = useState(0);
+    const [location, setLocation] = useState("");
 
     const handleTypeSelection = (type) => {
         if (selectedTypes.includes(type)) {
@@ -77,6 +79,23 @@ const AddOffer = () => {
                             </div>
                         </div>
 
+                    </div>
+
+
+                    <div className="mb-10 border">
+                        <h1 className='font-semibold mb-4'>Location:</h1>
+                        <div className='mb-10'>
+                            <input
+                                type="text"
+                                name="location"
+                                onChange={(e) => setLocation(e.target.value)}
+                                className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="mb-10 border">
+                        <TextEditor />
                     </div>
 
                     <div className="mb-10 flex justify-end">

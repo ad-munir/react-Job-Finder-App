@@ -157,6 +157,10 @@ li {
 }
 
 
+.ql-editor {
+  min-height: 300px !important;
+}
+
 /* 
 h1 {
   font-size: 3.2em;
