@@ -100,35 +100,28 @@ const RegistrationForm = () => {
         handleRegistration();
     }
 
-    const handleRegistration = () => {
+    package com.munir.security.dto;
 
-        request(
-            'POST',
-            '/api/v1/auth/register',
-            {
-                firstname,
-                lastname,
-                email,
-                password
-                // role: "ADMIN" // this is in case of admin registration
-            }
-        )
-        .then(
-            (response) => {
-                console.log(response);
-                console.log(response.data.token);
-                setAuthHeader(response.data.token);
-                setIsLoggedIn(true);
-                setUser({ ...user, firstname, lastname, email, password });
-                navigate('/');
-            }).catch(
-            (error) => {
-                console.log(error);
-                setAuthHeader(null);
-            }
-        );
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-    };
+import java.util.Date;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+public class OfferDto {
+    private String image;
+    private String title;
+    private String location;
+    private String desc;
+    private String company;
+    private String type;
+    private String level;
+    private Date createdAt;
+    private String salary;
+}
 
     return (
         <>
