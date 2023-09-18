@@ -5,6 +5,7 @@ import { request } from '../../Service/AuthHelper';
 
 function TestEditor() {
     const [text, setText] = useState('');
+    const [result, setResult] = useState('');
 
     const modules = {
         toolbar: [
@@ -42,10 +43,10 @@ function TestEditor() {
             '/api/v1/data/offers',
             {
                 "image": "https://example.com/offer-image.png",
-                "title": "Data Engineer",
+                "title": "Tester",
                 "location": "Boston",
                 "desc": text,
-                "company": "test Inc.",
+                "company": "test",
                 "type": "Full-time",
                 "level": "Senior",
                 "createdAt": "2023-09-16T10:15:00Z",
@@ -65,6 +66,29 @@ function TestEditor() {
 
     };
 
+
+    
+    const getOfferByCompany = (company) => {
+
+        request(
+            'GET',
+            '/api/v1/data/offers/company/test',
+            {}
+        )
+            .then(
+                (response) => {
+                    console.log(response);
+                    console.log(response.data);
+                    setResult(response.data.desc)
+                })
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+
+    };
+
     return (
         <>
             <ReactQuill
@@ -73,7 +97,11 @@ function TestEditor() {
                 onChange={setText}
                 modules={modules}
             />
-            <button onClick={saveContentToDatabase}>Save Content</button>
+            <button className='bg-green-600' onClick={saveContentToDatabase}>Save Content</button>
+            <br />
+            <button className='bg-yellow-600' onClick={getOfferByCompany}>get Content</button>
+
+            <div dangerouslySetInnerHTML={{ __html: result }} />
         </>
     );
 }
