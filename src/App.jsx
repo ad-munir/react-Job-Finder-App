@@ -29,7 +29,7 @@ function App() {
           <Route path="/jobs" element={<Layout><Jobs data={data} /></Layout>} />
           <Route path="/create-employer-account" element={<Layout><RegisterCompany /></Layout>} />
           {/* <Route path="/new-offer" element={<Layout><AddOffer /></Layout>} /> */}
-          <Route path="/new-offer" element={<><Navbar /><AddOffer /></>} />
+          <Route path="/new-offer" element={<Layout ><AddOffer /></Layout>} />
           
           <Route path="/apply" element={<ApplicationForm />} />
           <Route path="/contact" element={<Contact />} />

@@ -97,10 +97,6 @@ function TestEditor() {
                 onChange={setText}
                 modules={modules}
             />
-            <button className='bg-green-600' onClick={saveContentToDatabase}>Save Content</button>
-            <br />
-            <button className='bg-yellow-600' onClick={getOfferByCompany}>get Content</button>
-
             <div dangerouslySetInnerHTML={{ __html: result }} />
         </>
     );

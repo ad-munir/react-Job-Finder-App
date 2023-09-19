@@ -33,15 +33,18 @@ const AddOffer = () => {
     }, [minSalary, maxSalary, selectedTypes]);
 
     return (
-        <div className="min-h-screen border rounded-[15px] my-8 mx-48 mb-16">
+        <div className="">
 
-            <h1 className='font-semibold mb-4'>Offer Details:</h1>
+            <h1 className='font-semibold text-2xl my-8'>Offer Details:</h1>
 
-            <div className="text-textColor my-6 mx-10">
-                <form action="" onSubmit={handleSubmit}>
+            <form 
+                onSubmit={handleSubmit}
+                className='min-h-screen border rounded-[15px] my-8 mx-52 mb-16'
+                >
+                <div className="text-textColor my-6 mx-12">
 
                     <h1 className='font-semibold mb-4'>Post Type:</h1>
-                    <div className="mb-10 flex flex-wrap gap-2 border">
+                    <div className="mb-10 flex flex-wrap gap-3">
                         <OfferTypeBtn type={"Full-time"} onSelect={handleTypeSelection} />
                         <OfferTypeBtn type={"Part-time"} onSelect={handleTypeSelection} />
                         <OfferTypeBtn type={"CDI"} onSelect={handleTypeSelection} />
@@ -51,11 +54,10 @@ const AddOffer = () => {
                         <OfferTypeBtn type={"Alternation"} onSelect={handleTypeSelection} />
                     </div>
 
-                    <div className="mb-10 border">
-
+                    <div className="mb-12">
                         <h1 className='font-semibold mb-4'>Salary:</h1>
-                        <div className='flex flex-wrap gap-2'>
-                            <div className='mb-10'>
+                        <div className='flex flex-wrap gap-8'>
+                            <div>
                                 <label htmlFor="min" className="block mb-2 text-sm font-medium text-gray-900">Minimum:</label>
                                 <input
                                     type="number"
@@ -66,7 +68,7 @@ const AddOffer = () => {
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
                             </div>
-                            <div className='mb-10'>
+                            <div>
                                 <label htmlFor="max" className="block mb-2 text-sm font-medium text-gray-900">Maximum:</label>
                                 <input
                                     type="number"
@@ -78,11 +80,24 @@ const AddOffer = () => {
                                 />
                             </div>
                         </div>
-
                     </div>
 
 
-                    <div className="mb-10 border">
+                    <div className="mb-12 flex gap-10 items-center">
+                        <h1 className='font-semibold'>Experience:</h1>
+
+                        <select name="level"
+                            id="level"
+                            className='bg-white border border-gray-600 text-[14px] rounded-[3px] px-4 py-1 '
+                        >
+                            <option value="Beginner">Beginner</option>
+                            <option value="Senior">Senior</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Experienced">Experienced</option>
+                        </select>
+                    </div>
+
+                    <div className="mb-12">
                         <h1 className='font-semibold mb-4'>Location:</h1>
                         <div className='mb-10'>
                             <input
@@ -94,7 +109,8 @@ const AddOffer = () => {
                         </div>
                     </div>
 
-                    <div className="mb-10 border">
+                    <div className="mb-12">
+                        <h1 className='font-semibold mb-4'>Description:</h1>
                         <TextEditor />
                     </div>
 
@@ -107,8 +123,8 @@ const AddOffer = () => {
                         </button>
                     </div>
 
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     )
 }
