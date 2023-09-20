@@ -15,7 +15,13 @@ import Jobs from './components/Jobs/Jobs';
 import data from './data';
 import AddOffer from './components/AddOffer/AddOffer';
 import RegisterCompany from './components/RegisterCompany/RegisterCompany';
+import { useEffect } from 'react';
+import { getAuthToken } from './Service/AuthHelper';
 function App() {
+
+  useEffect(() => {
+      console.log(getAuthToken());
+    }, [])
 
   return (
 

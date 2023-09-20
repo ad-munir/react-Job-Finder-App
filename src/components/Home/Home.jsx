@@ -1,17 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Search from './../Search/Search';
 import Value from './../Value/Value';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../Contexts/Contexts';
+import { getAuthToken, setAuthHeader } from '../../Service/AuthHelper';
 
 const Home = () => {
 
-    const { loggedIn } = useContext(UserContext);
+    const { loggedIn, setLoggedIn } = useContext(UserContext);
+
+    // useEffect(() => {
+    //     if(getAuthToken() !== null && getAuthToken() !== 'null')
+    //         setLoggedIn(true);
+    // }, [])
 
     return (
         <div className="home" id='home'>
 
-            {!loggedIn ?
+            {loggedIn ?
                 <Link to={'/create-employer-account'}
                     className='h-12 w-max flex items-center  my-6  p-4 -ml-28 font-semibold text-textColor rounded cursor-pointer'
                     id='add-offer-btn'>

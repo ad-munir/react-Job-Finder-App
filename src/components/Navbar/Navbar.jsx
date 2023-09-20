@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from "../../Contexts/Contexts";
 import userImg from './../../assets/men.jpg'
-import { setAuthHeader } from "../../Service/AuthHelper";
+import { getAuthToken, getUserData, setAuthHeader } from "../../Service/AuthHelper";
 
 const Navbar = () => {
 
@@ -13,11 +13,26 @@ const Navbar = () => {
 
 
     const handleSignOut = () => {
-        setAuthHeader(null)
+        // Remove the authentication token from localStorage
+        localStorage.removeItem('auth_token');
+        // setAuthHeader(null)
         setUser({});
         setLoggedIn(false);
         navigate("/");
     }
+
+    // Check for the presence of an authentication token on page load
+    useEffect(() => {
+        const authToken = getAuthToken();
+        if (authToken && authToken !== 'null') {
+            setAuthHeader(authToken);
+            setLoggedIn(true);
+
+            // Retrieve user data and set it in the context
+        const userData = getUserData();
+        setUser(userData);
+        }
+    }, []);
 
     return (
         <nav className="navBar flex justify-between items-center px-12 pt-12">

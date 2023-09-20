@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { UserContext } from "../../Contexts/Contexts";
 import axios from "axios";
-import { request, setAuthHeader } from "../../Service/AuthHelper";
+import { request, setAuthHeader, setUserData } from "../../Service/AuthHelper";
 
 const RegistrationForm = () => {
 
@@ -16,7 +16,7 @@ const RegistrationForm = () => {
     const [toBeconfirmed, setToBeconfirmed] = useState('');
 
 
-    const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+    const { setLoggedIn } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -118,12 +118,15 @@ const RegistrationForm = () => {
                 console.log(response);
                 console.log(response.data.token);
                 setAuthHeader(response.data.token);
-                setIsLoggedIn(true);
-                setUser({ ...user, firstname, lastname, email, password });
+                setLoggedIn(true);
+                setUserData({ firstname, lastname, email, password });
+                // setUser({ ...user, firstname, lastname, email, password });
                 navigate('/');
-            }).catch(
+            })
+        .catch(
             (error) => {
                 console.log(error);
+                notify(error.response.data.message);
                 setAuthHeader(null);
             }
         );

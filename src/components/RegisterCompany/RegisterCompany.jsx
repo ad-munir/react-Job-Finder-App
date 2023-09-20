@@ -1,12 +1,44 @@
 import { useNavigate } from 'react-router-dom'
-import banner from './../../assets/banner1.png'
+import { useState } from 'react';
+import { request } from '../../Service/AuthHelper';
 const RegisterCompany = () => {
+
+    const [name, setName] = useState('');
+    const [desc, setDesc] = useState('');
+    const [nbEmployees, setNbEmployees] = useState('');
+    const [recruiterPhone, setRecruiterPhone] = useState('');
 
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/new-offer');
+        alert("submit");
+        console.log(name);
+        console.log(desc);
+        console.log(Number(nbEmployees));
+        console.log(recruiterPhone);
+
+
+        request(
+            'POST',
+            '/api/v1/data/companies',
+            {
+                name,
+                desc,
+                nbEmployees,
+                recruiterPhone,
+            }
+        )
+        .then(
+            (response) => {
+                console.log(response);
+                navigate('/new-offer');
+            }).catch(
+            (error) => {
+                console.log(error);
+            }
+        );
+
     }
     return (
         <div className="min-h-screen border rounded-[15px] my-8 mx-48">
@@ -25,8 +57,23 @@ const RegisterCompany = () => {
                             type="text"
                             name="name"
                             id="name"
+                            value={name}
+                            onChange={(e)=> setName(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="company name"
+                        />
+                    </div>
+
+                    <div className='mb-10'>
+                        <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900">Company description:</label>
+                        <textarea
+                            type="text"
+                            name="desc"
+                            id="desc"
+                            rows={10}
+                            value={desc}
+                            onChange={(e)=> setDesc(e.target.value)}
+                            className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                         />
                     </div>
 
@@ -36,17 +83,22 @@ const RegisterCompany = () => {
                             type="number"
                             name="number"
                             id="number"
+                            min={1}
+                            value={nbEmployees}
+                            onChange={(e)=> setNbEmployees(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="number of employees"
                         />
                     </div>
 
                     <div className='mb-10'>
-                        <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900">Your phone number:</label>
+                        <label htmlFor="recruiterPhone" className="block mb-2 text-sm font-medium text-gray-900">Your phone number:</label>
                         <input
                             type="text"
-                            name="phone"
-                            id="phone"
+                            name="recruiterPhone"
+                            id="recruiterPhone"
+                            value={recruiterPhone}
+                            onChange={(e)=> setRecruiterPhone(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="Phone number (1234-456-7890)"
                         />

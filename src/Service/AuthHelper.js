@@ -24,3 +24,13 @@ export const request = (method, url,data) => {
         data
     })
 }
+
+
+export const getUserData = () => {
+    const userData = localStorage.getItem('user_data');
+    return userData ? JSON.parse(userData) : {};
+};
+
+export const setUserData = (userData) => {
+    localStorage.setItem('user_data', JSON.stringify(userData));
+};

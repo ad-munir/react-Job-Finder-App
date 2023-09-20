@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { getAuthToken } from "../Service/AuthHelper";
 
 export const UserContext = createContext();
 
@@ -7,6 +8,7 @@ function UserProvider({ children }) {
 
     const [user, setUser] = useState({});
 
+    // const [loggedIn, setLoggedIn] = useState(!(getAuthToken() === null || getAuthToken() === 'null'));
     const [loggedIn, setLoggedIn] = useState(false);
 
 

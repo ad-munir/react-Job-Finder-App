@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import { request, setAuthHeader } from "../../Service/AuthHelper";
+import { request, setAuthHeader, setUserData } from "../../Service/AuthHelper";
 
 const LoginForm = () => {
 
@@ -15,7 +15,7 @@ const LoginForm = () => {
     const notify = (text) => toast.error(text);
 
     const navigate = useNavigate();
-    const { user, setUser, setLoggedIn } = useContext(UserContext);
+    const { setLoggedIn } = useContext(UserContext);
 
 
 
@@ -52,7 +52,7 @@ const LoginForm = () => {
                 console.log(response.data);
                 setAuthHeader(response.data.token);
                 setLoggedIn(true);
-                setUser({
+                setUserData({
                     firstname : response.data.firstname,
                     lastname : response.data.lastname,
                     email, 
