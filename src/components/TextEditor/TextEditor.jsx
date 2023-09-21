@@ -3,8 +3,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { request } from '../../Service/AuthHelper';
 
-function TestEditor() {
-    const [text, setText] = useState('');
+function TestEditor({desc, setDesc}) {
+    
     const [result, setResult] = useState('');
 
     const modules = {
@@ -14,8 +14,8 @@ function TestEditor() {
     };
 
     useEffect(() => {
-        console.log(text);
-    }, [text]);
+        console.log(desc);
+    }, [desc]);
 
 
     // useEffect(() => {
@@ -45,7 +45,7 @@ function TestEditor() {
                 "image": "https://example.com/offer-image.png",
                 "title": "Tester",
                 "location": "Boston",
-                "desc": text,
+                "desc": desc,
                 "company": "test",
                 "type": "Full-time",
                 "level": "Senior",
@@ -93,8 +93,8 @@ function TestEditor() {
         <>
             <ReactQuill
                 className='border border-gray-700'
-                value={text}
-                onChange={setText}
+                value={desc}
+                onChange={setDesc}
                 modules={modules}
             />
             <div dangerouslySetInnerHTML={{ __html: result }} />

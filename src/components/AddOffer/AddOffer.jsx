@@ -2,16 +2,20 @@ import { useEffect, useState } from 'react';
 import OfferTypeBtn from '../OfferTypeBtn/OfferTypeBtn';
 import { useNavigate } from 'react-router-dom';
 import TextEditor from '../TextEditor/TextEditor';
+import { request } from '../../Service/AuthHelper';
 
 
 const AddOffer = () => {
 
     const navigate = useNavigate();
 
+    const [title, setTitle] = useState('');
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [minSalary, setMinSalary] = useState(0);
     const [maxSalary, setMaxSalary] = useState(0);
+    const [experience, setExperience] = useState("none");
     const [location, setLocation] = useState("");
+    const [desc, setDesc] = useState('');
 
     const handleTypeSelection = (type) => {
         if (selectedTypes.includes(type)) {
@@ -23,26 +27,79 @@ const AddOffer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate('/new-offer');
+
+        request(
+            'POST',
+            '/api/v1/data/offers',
+            {
+                "image": "https://example.com/offer-image.png",
+                "title": "Tester",
+                "location": "Boston",
+                "desc": 'text',
+                "company": "test",
+                "type": "Full-time",
+                "level": "Senior",
+                "createdAt": "2023-09-16T10:15:00Z",
+                "salary": "$150,000"
+            }
+        )
+            .then(
+                (response) => {
+                    console.log(response);
+                    console.log(response.data);
+                })
+            .catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
+
+
+        navigate('/');
+        alert("success")
     }
 
     useEffect(() => {
-        console.log(selectedTypes); // Log the updated state after each render
+        console.log("title " + title)
+        console.log(selectedTypes); 
         console.log("min " + minSalary)
         console.log("max " + maxSalary)
-    }, [minSalary, maxSalary, selectedTypes]);
+        console.log("location " + location)
+        console.log("exp " + experience)
+        console.log("desc " + desc);
+    }, [title, minSalary,experience, maxSalary, selectedTypes, desc]);
+
+
+    useEffect(() => {
+        setMaxSalary(minSalary);
+    }, [minSalary]);
+
 
     return (
         <div className="">
 
             <h1 className='font-semibold text-2xl my-8'>Offer Details:</h1>
 
-            <form 
+            <form
                 onSubmit={handleSubmit}
                 className='min-h-screen border rounded-[15px] my-8 mx-52 mb-16'
-                >
+            >
+
                 <div className="text-textColor my-6 mx-12">
 
+                    <div className='mb-12'>
+                        <label htmlFor="title" className="block mb-2 text-base font-semibold text-gray-900">Job title:</label>
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
+                        />
+                    </div>
+
+                    <div className="mb-12">
                     <h1 className='font-semibold mb-4'>Post Type:</h1>
                     <div className="mb-10 flex flex-wrap gap-3">
                         <OfferTypeBtn type={"Full-time"} onSelect={handleTypeSelection} />
@@ -52,6 +109,7 @@ const AddOffer = () => {
                         <OfferTypeBtn type={"Stage"} onSelect={handleTypeSelection} />
                         <OfferTypeBtn type={"Freelance"} onSelect={handleTypeSelection} />
                         <OfferTypeBtn type={"Alternation"} onSelect={handleTypeSelection} />
+                    </div>
                     </div>
 
                     <div className="mb-12">
@@ -64,6 +122,7 @@ const AddOffer = () => {
                                     name="min"
                                     id="min"
                                     min={1}
+                                    value={minSalary}
                                     onChange={(e) => setMinSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
@@ -75,6 +134,7 @@ const AddOffer = () => {
                                     name="max"
                                     id="max"
                                     min={1}
+                                    value={maxSalary}
                                     onChange={(e) => setMaxSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
@@ -88,9 +148,12 @@ const AddOffer = () => {
 
                         <select name="level"
                             id="level"
+                            value={experience}
+                            onChange={(e)=> setExperience(e.target.value)}
                             className='bg-white border border-gray-600 text-[14px] rounded-[3px] px-4 py-1 '
                         >
-                            <option value="Beginner">Beginner</option>
+                            <option value="Beginner">none</option>
+                            <option value="Beginner">junior</option>
                             <option value="Senior">Senior</option>
                             <option value="Intermediate">Intermediate</option>
                             <option value="Experienced">Experienced</option>
@@ -111,7 +174,7 @@ const AddOffer = () => {
 
                     <div className="mb-12">
                         <h1 className='font-semibold mb-4'>Description:</h1>
-                        <TextEditor />
+                        <TextEditor desc={desc} setDesc={setDesc} />
                     </div>
 
                     <div className="mb-10 flex justify-end">
