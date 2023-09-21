@@ -25,6 +25,8 @@ const AddOffer = () => {
         }
     }
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -32,42 +34,39 @@ const AddOffer = () => {
             'POST',
             '/api/v1/data/offers',
             {
-                "image": "https://example.com/offer-image.png",
-                "title": "Tester",
-                "location": "Boston",
-                "desc": 'text',
-                "company": "test",
-                "type": "Full-time",
-                "level": "Senior",
-                "createdAt": "2023-09-16T10:15:00Z",
-                "salary": "$150,000"
+                title: title,
+                location: location,
+                desc: desc,
+                types: selectedTypes,
+                experience: experience,
+                minSalary: Number(minSalary),
+                maxSalary: maxSalary,
+                companyId: 1
             }
         )
             .then(
                 (response) => {
                     console.log(response);
                     console.log(response.data);
+                    // navigate('/');
+                    alert("success")
                 })
             .catch(
                 (error) => {
                     console.log(error);
                 }
             );
-
-
-        navigate('/');
-        alert("success")
     }
 
     useEffect(() => {
         console.log("title " + title)
-        console.log(selectedTypes); 
+        console.log(selectedTypes);
         console.log("min " + minSalary)
         console.log("max " + maxSalary)
         console.log("location " + location)
         console.log("exp " + experience)
         console.log("desc " + desc);
-    }, [title, minSalary,experience, maxSalary, selectedTypes, desc]);
+    }, [title, minSalary, experience, maxSalary, selectedTypes, desc]);
 
 
     useEffect(() => {
@@ -100,16 +99,18 @@ const AddOffer = () => {
                     </div>
 
                     <div className="mb-12">
-                    <h1 className='font-semibold mb-4'>Post Type:</h1>
-                    <div className="mb-10 flex flex-wrap gap-3">
-                        <OfferTypeBtn type={"Full-time"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"Part-time"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"CDI"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"CDD"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"Stage"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"Freelance"} onSelect={handleTypeSelection} />
-                        <OfferTypeBtn type={"Alternation"} onSelect={handleTypeSelection} />
-                    </div>
+                        <h1 className='font-semibold mb-4'>Post Type:</h1>
+                        <div className="mb-10 flex flex-wrap gap-3">
+                            <OfferTypeBtn type={"Full-time"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Part-time"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Remote"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Hybrid"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"CDI"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"CDD"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Stage"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Freelance"} onSelect={handleTypeSelection} />
+                            <OfferTypeBtn type={"Alternation"} onSelect={handleTypeSelection} />
+                        </div>
                     </div>
 
                     <div className="mb-12">
@@ -133,8 +134,8 @@ const AddOffer = () => {
                                     type="number"
                                     name="max"
                                     id="max"
-                                    min={1}
-                                    value={maxSalary}
+                                    min={minSalary}
+                                    value={maxSalary<minSalary?minSalary:maxSalary}
                                     onChange={(e) => setMaxSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />
@@ -149,7 +150,7 @@ const AddOffer = () => {
                         <select name="level"
                             id="level"
                             value={experience}
-                            onChange={(e)=> setExperience(e.target.value)}
+                            onChange={(e) => setExperience(e.target.value)}
                             className='bg-white border border-gray-600 text-[14px] rounded-[3px] px-4 py-1 '
                         >
                             <option value="Beginner">none</option>
