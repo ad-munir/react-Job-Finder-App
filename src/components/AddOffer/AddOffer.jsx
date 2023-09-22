@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import OfferTypeBtn from '../OfferTypeBtn/OfferTypeBtn';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TextEditor from '../TextEditor/TextEditor';
-import { request } from '../../Service/AuthHelper';
+import { getUserData, request } from '../../Service/AuthHelper';
 
 
 const AddOffer = () => {
 
-    const navigate = useNavigate();
-
+    const [companyId, setCompanyId] = useState(null);
     const [title, setTitle] = useState('');
     const [selectedTypes, setSelectedTypes] = useState([]);
     const [minSalary, setMinSalary] = useState(0);
@@ -16,6 +15,12 @@ const AddOffer = () => {
     const [experience, setExperience] = useState("none");
     const [location, setLocation] = useState("");
     const [desc, setDesc] = useState('');
+
+
+    
+    const navigate = useNavigate();
+    const locate = useLocation();
+
 
     const handleTypeSelection = (type) => {
         if (selectedTypes.includes(type)) {
@@ -41,15 +46,15 @@ const AddOffer = () => {
                 experience: experience,
                 minSalary: Number(minSalary),
                 maxSalary: maxSalary,
-                companyId: 1
+                // companyId: getUserData().companyId ? getUserData().companyId : 
+                companyId: locate.state.companyId
             }
         )
             .then(
                 (response) => {
                     console.log(response);
                     console.log(response.data);
-                    // navigate('/');
-                    alert("success")
+                    navigate('/');
                 })
             .catch(
                 (error) => {
@@ -59,14 +64,9 @@ const AddOffer = () => {
     }
 
     useEffect(() => {
-        console.log("title " + title)
-        console.log(selectedTypes);
-        console.log("min " + minSalary)
-        console.log("max " + maxSalary)
-        console.log("location " + location)
-        console.log("exp " + experience)
-        console.log("desc " + desc);
-    }, [title, minSalary, experience, maxSalary, selectedTypes, desc]);
+        console.log(locate.state);
+
+    }, []);
 
 
     useEffect(() => {
@@ -135,7 +135,8 @@ const AddOffer = () => {
                                     name="max"
                                     id="max"
                                     min={minSalary}
-                                    value={maxSalary<minSalary?minSalary:maxSalary}
+                                    // value={maxSalary<minSalary?minSalary:maxSalary}
+                                    value={maxSalary}
                                     onChange={(e) => setMaxSalary(e.target.value)}
                                     className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                                 />

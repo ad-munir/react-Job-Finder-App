@@ -119,7 +119,13 @@ const RegistrationForm = () => {
                 console.log(response.data.token);
                 setAuthHeader(response.data.token);
                 setLoggedIn(true);
-                setUserData({ firstname, lastname, email, password });
+                setUserData({ 
+                    firstname, 
+                    lastname, 
+                    email, 
+                    password,
+                    companyId : response.data.companyId
+                });
                 // setUser({ ...user, firstname, lastname, email, password });
                 navigate('/');
             })

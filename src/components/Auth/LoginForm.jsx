@@ -56,7 +56,8 @@ const LoginForm = () => {
                     firstname : response.data.firstname,
                     lastname : response.data.lastname,
                     email, 
-                    password 
+                    password,
+                    companyId : response.data.companyId
                 });
                 navigate(-1);
             }).catch(

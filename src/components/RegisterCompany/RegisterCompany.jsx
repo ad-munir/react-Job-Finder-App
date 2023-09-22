@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { request } from '../../Service/AuthHelper';
 const RegisterCompany = () => {
 
@@ -13,10 +13,6 @@ const RegisterCompany = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         alert("submit");
-        console.log(name);
-        console.log(desc);
-        console.log(Number(nbEmployees));
-        console.log(recruiterPhone);
 
 
         request(
@@ -29,17 +25,20 @@ const RegisterCompany = () => {
                 recruiterPhone,
             }
         )
+
         .then(
             (response) => {
                 console.log(response);
-                navigate('/new-offer');
-            }).catch(
+                navigate('/new-offer', { state: { companyId: response.data.id } })
+        }).catch(
             (error) => {
                 console.log(error);
+                alert("error");
             }
         );
 
     }
+
     return (
         <div className="min-h-screen border rounded-[15px] my-8 mx-48">
             <div className="banner bg-inherit h-[340px] relative">
@@ -49,7 +48,7 @@ const RegisterCompany = () => {
             <div className="text-textColor my-6 mx-10">
                 <h1 className='font-semibold mb-4'>As you have never posted a job offer, you will need to create an employer account.</h1>
 
-                <form action="" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
 
                     <div className='mb-10'>
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Company name:</label>
@@ -58,7 +57,7 @@ const RegisterCompany = () => {
                             name="name"
                             id="name"
                             value={name}
-                            onChange={(e)=> setName(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="company name"
                         />
@@ -72,7 +71,7 @@ const RegisterCompany = () => {
                             id="desc"
                             rows={10}
                             value={desc}
-                            onChange={(e)=> setDesc(e.target.value)}
+                            onChange={(e) => setDesc(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                         />
                     </div>
@@ -85,7 +84,7 @@ const RegisterCompany = () => {
                             id="number"
                             min={1}
                             value={nbEmployees}
-                            onChange={(e)=> setNbEmployees(e.target.value)}
+                            onChange={(e) => setNbEmployees(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="number of employees"
                         />
@@ -98,7 +97,7 @@ const RegisterCompany = () => {
                             name="recruiterPhone"
                             id="recruiterPhone"
                             value={recruiterPhone}
-                            onChange={(e)=> setRecruiterPhone(e.target.value)}
+                            onChange={(e) => setRecruiterPhone(e.target.value)}
                             className="bg-gray-50 border border-gray-600 text-gray-900 sm:text-sm rounded-lg block w-full p-2"
                             placeholder="Phone number (1234-456-7890)"
                         />
